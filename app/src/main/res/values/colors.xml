@@ -2,4 +2,10 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="turquesa">#4FD1C5</color>
+    <color name="naranja">#FF6F61</color>
+    <color name="oscuro">#234E52</color>
+    <color name="amarillo">#F2DEA6</color>
+    <color name="Turquesa">#4FD1C5</color>
+    <color name="Blanco">#F7FAFC</color>
 </resources>
