@@ -3,4 +3,5 @@
     android:shape="oval">
     <solid android:color="#804FD1C5" />
     <!-- 80 = 50% de opacidad en hexadecimal -->
+
 </shape>

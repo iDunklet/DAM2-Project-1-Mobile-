@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <styles name="MontserratHintStyle" parent="TextAppearance.AppCompat">
+    <!-- CORRECCIÓN: usa <style> en singular -->
+    <style name="MontserratHintStyle" parent="TextAppearance.AppCompat">
         <item name="fontFamily">@font/montserrat_regular</item>
         <item name="android:fontFamily">@font/montserrat_regular</item>
-    </styles>
+    </style>
+
+    <!-- Estilo adicional para texto bold si lo necesitas -->
+    <style name="MontserratBoldStyle" parent="TextAppearance.AppCompat">
+        <item name="fontFamily">@font/montserrat_bold</item>
+        <item name="android:fontFamily">@font/montserrat_bold</item>
+    </style>
 </resources>
