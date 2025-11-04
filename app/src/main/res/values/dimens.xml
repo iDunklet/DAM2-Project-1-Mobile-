@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="circle_size">225dp</dimen>
+    <dimen name="rectangle_turquesa_width">match_parent</dimen>
+    <dimen name="rect_turquesa_height">125dp</dimen>
 </resources>
