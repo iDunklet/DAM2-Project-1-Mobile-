@@ -40,16 +40,16 @@
         android:layout_height="@dimen/circle_size"
         android:background="@drawable/circle_turquesa"
         android:layout_centerInParent="false"
-        android:translationX="250dp"
-        android:translationY="750dp" />
+        android:translationX="300dp"
+        android:translationY="350dp" />
 
     <!-- Icono -->
     <ImageView
-        android:layout_width="170dp"
-        android:layout_height="170dp"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
         android:src="@drawable/icono_tasky"
-        android:translationX="160dp"
-        android:translationY="80dp"
+        android:translationX="90dp"
+        android:translationY="30dp"
         />
 
 
@@ -88,7 +88,7 @@
                 android:textSize="42sp"
                 android:textStyle="bold"
                 android:textColor="@color/oscuro"
-                android:layout_marginTop="1dp"
+                android:layout_marginTop="4dp"
                 android:layout_marginStart="1dp" />
 
         </RelativeLayout>
@@ -139,7 +139,7 @@
             android:textColor="@color/naranja"
             android:textSize="14sp"
             android:textStyle="bold"
-            android:layout_marginBottom="32dp"
+            android:layout_marginBottom="20dp"
             android:buttonTint="@color/naranja"
              />
 

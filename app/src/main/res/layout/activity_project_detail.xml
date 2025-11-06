@@ -1,42 +1,265 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/main"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@color/white"
+tools:context=".ProjectDetailActivity">
+
+<View
+    android:id="@+id/circle1"
+    android:layout_width="@dimen/circle_size"
+    android:layout_height="@dimen/circle_size"
+    android:layout_centerInParent="false"
+    android:background="@drawable/circle_turquesa"
+    android:translationX="300dp"
+    android:translationY="450dp" />
+
+<View
+    android:id="@+id/circle2"
+    android:layout_width="@dimen/circle_size"
+    android:layout_height="@dimen/circle_size"
+    android:layout_centerInParent="false"
+    android:background="@drawable/circle_turquesa"
+    android:translationX="-120dp"
+    android:translationY="250dp" />
+
+<View
+    android:id="@+id/circle3"
+    android:layout_width="@dimen/circle_size"
+    android:layout_height="@dimen/circle_size"
+    android:background="@drawable/circle_turquesa"
+    android:layout_centerInParent="false"
+    android:translationX="-120dp"
+    android:translationY="600dp" />
+
+
+<FrameLayout
+    android:id="@+id/titleBar"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ProjectDetailActivity">
-    <View
-        android:id="@+id/circle1"
-        android:layout_width="@dimen/circle_size"
-        android:layout_height="@dimen/circle_size"
-        android:layout_centerInParent="false"
-        android:background="@drawable/circle_turquesa"
-        android:translationX="300dp"
-        android:translationY="450dp" />
+    android:layout_height="@dimen/rect_turquesa_height"
+    android:layout_alignParentTop="true">
+
 
     <View
-        android:id="@+id/circle2"
-        android:layout_width="@dimen/circle_size"
-        android:layout_height="@dimen/circle_size"
-        android:layout_centerInParent="false"
-        android:background="@drawable/circle_turquesa"
-        android:translationX="-120dp"
-        android:translationY="250dp" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/rectangle_turquesa" />
 
-    <View
-        android:id="@+id/circle3"
-        android:layout_width="@dimen/circle_size"
-        android:layout_height="@dimen/circle_size"
-        android:background="@drawable/circle_turquesa"
-        android:layout_centerInParent="false"
-        android:translationX="-120dp"
-        android:translationY="700dp" />
 
-    <View
-        android:id="@+id/rectangleTurquesa"
-        android:layout_width="@dimen/rectangle_turquesa_width"
-        android:layout_height="@dimen/rect_turquesa_height"
-        android:background="@drawable/rectangle_turquesa"
-    />
+    <ImageView
+        android:id="@+id/btnBack"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/flecha"
+        android:layout_gravity="center_vertical|start"
+        android:layout_marginStart="12dp" />
+
+
+    <TextView
+        android:id="@+id/txtTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Proyecto 1"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="56dp" />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_gravity="center_vertical|end"
+        android:layout_marginEnd="40dp">
+
+        <ImageView
+            android:id="@+id/btnStar"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/estrella"
+            android:layout_marginEnd="8dp"/>
+
+        <TextView
+            android:id="@+id/txtMembers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="x miembros"
+            android:textColor="@color/oscuro"
+            android:textSize="18sp"/>
+    </LinearLayout>
+</FrameLayout>
+
+
+<LinearLayout
+    android:id="@+id/tabBar"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:orientation="horizontal"
+    android:layout_below="@id/titleBar"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:id="@+id/tabTareas"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Tareas"
+        android:textColor="@color/naranja"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/tabResumenes"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Resumenes"
+        android:textColor="@color/oscuro"
+        android:textStyle="normal" />
+</LinearLayout>
+
+
+    <ScrollView
+        android:id="@+id/contentScroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tabBar"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="--- Pendientes ------"
+                android:textColor="@color/oscuro"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/back_tarea"
+                android:gravity="center_vertical"
+                android:paddingStart="16dp"
+                android:text="Tarea 1"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/back_tarea"
+                android:text="Tarea 2"
+                android:gravity="center_vertical"
+                android:paddingStart="16dp"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/back_tarea"
+                android:text="Tarea 3"
+                android:gravity="center_vertical"
+                android:paddingStart="16dp"
+                android:textSize="16sp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/back_tarea"
+                android:text="Tarea 4"
+                android:gravity="center_vertical"
+                android:paddingStart="16dp"
+                android:textSize="16sp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/back_tarea"
+                android:text="Tarea 5"
+                android:gravity="center_vertical"
+                android:paddingStart="16dp"
+                android:textSize="16sp"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="--- Hechas ------"
+                android:textColor="@color/oscuro"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="16dp"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/back_tarea2"
+                android:text="Tarea 6"
+                android:gravity="center_vertical"
+                android:paddingStart="16dp"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/back_tarea2"
+                android:text="Tarea 7"
+                android:gravity="center_vertical"
+                android:paddingStart="16dp"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/back_tarea2"
+                android:text="Tarea 8"
+                android:gravity="center_vertical"
+                android:paddingStart="16dp"
+                android:textSize="16sp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/back_tarea2"
+                android:text="Tarea 9"
+                android:gravity="center_vertical"
+                android:paddingStart="16dp"
+                android:textSize="16sp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/back_tarea2"
+                android:text="Tarea 10"
+                android:gravity="center_vertical"
+                android:paddingStart="16dp"
+                android:textSize="16sp"/>
+        </LinearLayout>
+    </ScrollView>
+
 </RelativeLayout>
