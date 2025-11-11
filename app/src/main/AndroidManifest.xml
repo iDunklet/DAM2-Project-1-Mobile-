@@ -13,16 +13,16 @@
         android:theme="@style/Theme.Mobile">
         <activity
             android:name=".TarearDetailActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".ProjectDetailActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".PersonalInfoActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".ProjectsActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

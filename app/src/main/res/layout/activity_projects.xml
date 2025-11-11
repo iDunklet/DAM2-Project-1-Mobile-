@@ -1,12 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".ProjectsActivity">
 
+    <!-- Rectángulo turquesa en la parte superior -->
+    <View
+        android:id="@+id/headerBackground"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/rectangle_turquesa" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/headerBackground"
+        android:layout_alignBottom="@id/headerBackground"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="20dp">
+
+        <ImageView
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:background="@drawable/mini_logo" />
+
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tus Proyectos"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp" />
+
+        <ImageButton
+            android:id="@+id/button_info_person"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:background="@drawable/image_button_info_person"
+            android:contentDescription="@string/app_name" />
+
+    </LinearLayout>
+
+    <!-- Contenedor para las pestañas/opciones -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/headerBackground"
+        android:layout_marginTop="30dp"
+        android:paddingHorizontal="20dp">
+
+        <LinearLayout
+            android:id="@+id/tabsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <!-- Botón/Texto Recientes -->
+            <TextView
+                android:id="@+id/tabRecientes"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Recientes"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:paddingVertical="12dp"
+                android:background="?attr/selectableItemBackground"
+                android:textColor="@android:color/black" />
+
+            <!-- Botón/Texto Favoritos -->
+            <TextView
+                android:id="@+id/tabFavoritos"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Favoritos"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:paddingVertical="12dp"
+                android:background="?attr/selectableItemBackground"
+                android:textColor="@android:color/black" />
+
+            <!-- Botón/Texto Todos -->
+            <TextView
+                android:id="@+id/tabTodos"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Todos"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:paddingVertical="12dp"
+                android:background="?attr/selectableItemBackground"
+                android:textColor="@android:color/black" />
+
+        </LinearLayout>
+
+        <!-- Barra indicadora naranja -->
+        <View
+            android:id="@+id/indicator"
+            android:layout_width="0dp"
+            android:layout_height="3dp"
+            android:layout_below="@id/tabsContainer"
+            android:background="#FF9800"
+            android:layout_marginTop="2dp" />
+
+    </RelativeLayout>
+
+    <!-- Círculos decorativos -->
+    <View
+        android:id="@+id/circle1"
+        android:layout_width="@dimen/circle_size"
+        android:layout_height="@dimen/circle_size"
+        android:layout_centerInParent="false"
+        android:background="@drawable/circle_turquesa"
+        android:translationX="300dp"
+        android:translationY="190dp" />
+
+    <View
+        android:id="@+id/circle2"
+        android:layout_width="@dimen/circle_size"
+        android:layout_height="@dimen/circle_size"
+        android:background="@drawable/circle_turquesa"
+        android:layout_centerInParent="false"
+        android:translationX="-120dp"
+        android:translationY="450dp" />
+
+    <View
+        android:id="@+id/circle3"
+        android:layout_width="@dimen/circle_size"
+        android:layout_height="@dimen/circle_size"
+        android:layout_centerInParent="false"
+        android:background="@drawable/circle_turquesa"
+        android:translationX="260dp"
+        android:translationY="600dp" />
+
+</RelativeLayout>
