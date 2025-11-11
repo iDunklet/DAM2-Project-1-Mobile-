@@ -11,3 +11,4 @@ data class Project(
     var projectTasks: MutableList<Task>,
     val projectImage: Bitmap?
 )
+
