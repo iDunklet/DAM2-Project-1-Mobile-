@@ -1,20 +1,27 @@
 package com.example.mobile
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import android.widget.Button
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
+
         iniciarAnimaciones()
 
-
-
+        val btnLogin = findViewById<Button>(R.id.btnLogin)
+        btnLogin.setOnClickListener {
+            // Salte a ProjectDetailActivity cuando haga clic
+            val intent = Intent(this, ProjectDetailActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun iniciarAnimaciones() {

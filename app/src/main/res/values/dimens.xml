@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="circle_size">215dp</dimen>
-    <dimen name="rectangle_turquesa_width">match_parent</dimen>
     <dimen name="rect_turquesa_height">125dp</dimen>
-    <dimen name="padding_tarea">16dp</dimen>
-    <dimen name="text_tarea">16sp</dimen>
-    <dimen name="margin_tarea">8dp</dimen>
+    <dimen name="padding_tarea">4dp</dimen>
+    <dimen name="text_tarea">18sp</dimen>
+    <dimen name="margin_tarea">4dp</dimen>
     <dimen name="height_tarea">40dp</dimen>
-
-
 </resources>
