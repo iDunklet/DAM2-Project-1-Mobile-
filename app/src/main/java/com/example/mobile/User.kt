@@ -16,15 +16,4 @@ data class User(
     var profileImage: Bitmap?,
     var miniProfileImage: Bitmap?
 )
-val user = User(
-    firstName = "Maria",
-    lastName1 = "Lopez",
-    lastName2 = null,
-    birthDate = Date(),
-    className = "Clase B",
-    email = "maria@mail.com",
-    password = "abcd",
-    userName = "MariaL",
-    profileImage = null,
-    miniProfileImage = null
-)
+
