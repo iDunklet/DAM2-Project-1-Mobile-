@@ -68,6 +68,13 @@ tools:context=".ProjectDetailActivity">
         android:textSize="20sp"
         android:layout_gravity="center_vertical"
         android:layout_marginStart="56dp" />
+    <ImageView
+        android:id="@+id/btnStar"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/estrella"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="180dp"/>
 
 
     <LinearLayout
@@ -78,12 +85,6 @@ tools:context=".ProjectDetailActivity">
         android:layout_gravity="center_vertical|end"
         android:layout_marginEnd="40dp">
 
-        <ImageView
-            android:id="@+id/btnStar"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/estrella"
-            android:layout_marginEnd="8dp"/>
 
         <TextView
             android:id="@+id/txtMembers"
@@ -127,21 +128,14 @@ tools:context=".ProjectDetailActivity">
         android:textStyle="normal" />
 </LinearLayout>
 
-
-    <ScrollView
-        android:id="@+id/contentScroll"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/tabBar"
-        android:padding="16dp">
-
-        <LinearLayout
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginTop="150dp"
+            android:padding="15dp">
 
-
-            <TextView
+        <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="--- Pendientes ------"
@@ -151,57 +145,13 @@ tools:context=".ProjectDetailActivity">
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"/>
 
+            <include layout="@layout/tareas_pendientes" />
+            <include layout="@layout/tareas_pendientes" />
+            <include layout="@layout/tareas_pendientes" />
+            <include layout="@layout/tareas_pendientes" />
+            <include layout="@layout/tareas_pendientes" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/back_tarea"
-                android:gravity="center_vertical"
-                android:paddingStart="16dp"
-                android:text="Tarea 1"
-                android:textSize="16sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/back_tarea"
-                android:text="Tarea 2"
-                android:gravity="center_vertical"
-                android:paddingStart="16dp"
-                android:textSize="16sp"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/back_tarea"
-                android:text="Tarea 3"
-                android:gravity="center_vertical"
-                android:paddingStart="16dp"
-                android:textSize="16sp"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/back_tarea"
-                android:text="Tarea 4"
-                android:gravity="center_vertical"
-                android:paddingStart="16dp"
-                android:textSize="16sp"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/back_tarea"
-                android:text="Tarea 5"
-                android:gravity="center_vertical"
-                android:paddingStart="16dp"
-                android:textSize="16sp"/>
-
-
-            <TextView
+        <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="--- Hechas ------"
@@ -211,55 +161,13 @@ tools:context=".ProjectDetailActivity">
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="16dp"/>
 
+            <include layout="@layout/tareas_hechas" />
+            <include layout="@layout/tareas_hechas" />
+            <include layout="@layout/tareas_hechas" />
+            <include layout="@layout/tareas_hechas" />
+            <include layout="@layout/tareas_hechas" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/back_tarea2"
-                android:text="Tarea 6"
-                android:gravity="center_vertical"
-                android:paddingStart="16dp"
-                android:textSize="16sp"/>
+    </LinearLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/back_tarea2"
-                android:text="Tarea 7"
-                android:gravity="center_vertical"
-                android:paddingStart="16dp"
-                android:textSize="16sp"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/back_tarea2"
-                android:text="Tarea 8"
-                android:gravity="center_vertical"
-                android:paddingStart="16dp"
-                android:textSize="16sp"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/back_tarea2"
-                android:text="Tarea 9"
-                android:gravity="center_vertical"
-                android:paddingStart="16dp"
-                android:textSize="16sp"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/back_tarea2"
-                android:text="Tarea 10"
-                android:gravity="center_vertical"
-                android:paddingStart="16dp"
-                android:textSize="16sp"/>
-        </LinearLayout>
-    </ScrollView>
 
 </RelativeLayout>
