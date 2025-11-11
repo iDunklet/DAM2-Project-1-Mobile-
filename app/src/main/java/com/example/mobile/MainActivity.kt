@@ -1,12 +1,12 @@
 package com.example.mobile
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import com.google.gson.Gson
-import java.io.IOException
+import android.widget.Button
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,16 +15,14 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-        startAnimations()
+        iniciarAnimaciones()
 
-        //Cargar JSON desde res/raw
-        //val jsonString = loadJsonFromRaw(R.raw.import0)
-        /*if (jsonString != null) {
-            // Ejemplo: parsear a objeto User
-            val user = Gson().fromJson(jsonString, User::class.java)
-            // Aquí ya puedes usar 'user'
-        }*/
-
+        val btnLogin = findViewById<Button>(R.id.btnLogin)
+        btnLogin.setOnClickListener {
+            // Salte a ProjectDetailActivity cuando haga clic
+            val intent = Intent(this, ProjectDetailActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     // Función para cargar JSON desde res/raw

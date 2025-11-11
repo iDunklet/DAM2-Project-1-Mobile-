@@ -1,173 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:id="@+id/main"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:background="@color/white"
-tools:context=".ProjectDetailActivity">
-
-<View
-    android:id="@+id/circle1"
-    android:layout_width="@dimen/circle_size"
-    android:layout_height="@dimen/circle_size"
-    android:layout_centerInParent="false"
-    android:background="@drawable/circle_turquesa"
-    android:translationX="300dp"
-    android:translationY="450dp" />
-
-<View
-    android:id="@+id/circle2"
-    android:layout_width="@dimen/circle_size"
-    android:layout_height="@dimen/circle_size"
-    android:layout_centerInParent="false"
-    android:background="@drawable/circle_turquesa"
-    android:translationX="-120dp"
-    android:translationY="250dp" />
-
-<View
-    android:id="@+id/circle3"
-    android:layout_width="@dimen/circle_size"
-    android:layout_height="@dimen/circle_size"
-    android:background="@drawable/circle_turquesa"
-    android:layout_centerInParent="false"
-    android:translationX="-120dp"
-    android:translationY="600dp" />
-
-
-<FrameLayout
-    android:id="@+id/titleBar"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/rect_turquesa_height"
-    android:layout_alignParentTop="true">
-
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ProjectDetailActivity">
 
     <View
+        android:id="@+id/circle1"
+        android:layout_width="@dimen/circle_size"
+        android:layout_height="@dimen/circle_size"
+        android:layout_centerInParent="false"
+        android:background="@drawable/circle_turquesa"
+        android:translationX="300dp"
+        android:translationY="450dp" />
+
+    <View
+        android:id="@+id/circle2"
+        android:layout_width="@dimen/circle_size"
+        android:layout_height="@dimen/circle_size"
+        android:layout_centerInParent="false"
+        android:background="@drawable/circle_turquesa"
+        android:translationX="-120dp"
+        android:translationY="250dp" />
+
+    <View
+        android:id="@+id/circle3"
+        android:layout_width="@dimen/circle_size"
+        android:layout_height="@dimen/circle_size"
+        android:background="@drawable/circle_turquesa"
+        android:layout_centerInParent="false"
+        android:translationX="-120dp"
+        android:translationY="600dp" />
+
+
+    <FrameLayout
+        android:id="@+id/titleBar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/rectangle_turquesa" />
+        android:layout_height="@dimen/rect_turquesa_height"
+        android:layout_alignParentTop="true">
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/rectangle_turquesa" />
 
-    <ImageView
-        android:id="@+id/btnBack"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:src="@drawable/flecha"
-        android:layout_gravity="center_vertical|start"
-        android:layout_marginStart="12dp" />
-
-
-    <TextView
-        android:id="@+id/txtTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Proyecto 1"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:layout_gravity="center_vertical"
-        android:layout_marginStart="56dp" />
-    <ImageView
-        android:id="@+id/btnStar"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:src="@drawable/estrella"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="180dp"/>
-
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:layout_gravity="center_vertical|end"
-        android:layout_marginEnd="40dp">
-
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/flecha"
+            android:layout_gravity="center_vertical|start"
+            android:layout_marginStart="12dp" />
 
         <TextView
-            android:id="@+id/txtMembers"
+            android:id="@+id/txtTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="x miembros"
+            android:text="Proyecto 1"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="56dp" />
+
+        <ImageView
+            android:id="@+id/btnStar"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/estrella"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="180dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginEnd="40dp">
+            <TextView
+                android:id="@+id/txtMembers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="x miembros"
+                android:textColor="@color/oscuro"
+                android:textSize="18sp"/>
+        </LinearLayout>
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/tabBar"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:layout_below="@id/titleBar"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tabTareas"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Tareas"
+            android:textColor="@color/naranja"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tabResumenes"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Resumenes"
             android:textColor="@color/oscuro"
-            android:textSize="18sp"/>
+            android:textStyle="normal" />
     </LinearLayout>
-</FrameLayout>
 
-
-<LinearLayout
-    android:id="@+id/tabBar"
-    android:layout_width="match_parent"
-    android:layout_height="48dp"
-    android:orientation="horizontal"
-    android:layout_below="@id/titleBar"
-    android:paddingStart="16dp"
-    android:paddingEnd="16dp"
-    android:gravity="center_vertical">
-
-    <TextView
-        android:id="@+id/tabTareas"
-        android:layout_width="0dp"
+    <ScrollView
+        android:id="@+id/scrollTasks"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:text="Tareas"
-        android:textColor="@color/naranja"
-        android:textStyle="bold"/>
+        android:layout_below="@id/tabBar"
+        android:layout_alignParentBottom="true"
+        android:fillViewport="true">
 
-    <TextView
-        android:id="@+id/tabResumenes"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:text="Resumenes"
-        android:textColor="@color/oscuro"
-        android:textStyle="normal" />
-</LinearLayout>
 
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="150dp"
-            android:padding="15dp">
+            android:orientation="vertical">
 
-        <TextView
+            <LinearLayout
+                android:id="@+id/pendientesContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="--- Pendientes ------"
-                android:textColor="@color/oscuro"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp"/>
+                android:orientation="vertical"
+                android:padding="8dp">
 
-            <include layout="@layout/tareas_pendientes" />
-            <include layout="@layout/tareas_pendientes" />
-            <include layout="@layout/tareas_pendientes" />
-            <include layout="@layout/tareas_pendientes" />
-            <include layout="@layout/tareas_pendientes" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="--- Pendientes ------"
+                    android:textColor="@color/oscuro"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"/>
+            </LinearLayout>
 
-        <TextView
+            <LinearLayout
+                android:id="@+id/hechasContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="--- Hechas ------"
-                android:textColor="@color/oscuro"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="16dp"/>
+                android:orientation="vertical"
+                android:padding="8dp">
 
-            <include layout="@layout/tareas_hechas" />
-            <include layout="@layout/tareas_hechas" />
-            <include layout="@layout/tareas_hechas" />
-            <include layout="@layout/tareas_hechas" />
-            <include layout="@layout/tareas_hechas" />
-
-    </LinearLayout>
-
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="--- Hechas ------"
+                    android:textColor="@color/oscuro"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="16dp"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>
+
