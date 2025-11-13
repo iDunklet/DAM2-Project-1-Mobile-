@@ -1,20 +1,40 @@
 package com.example.mobile
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import java.text.SimpleDateFormat
+import java.util.*
 
 class TarearDetailActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_tarear_detail)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+
+        val txtName = findViewById<TextView>(R.id.txtTaskName)
+        val txtDescription = findViewById<TextView>(R.id.txtTaskDescription)
+        val txtUser = findViewById<TextView>(R.id.txtTaskUser)
+        val txtDates = findViewById<TextView>(R.id.txtTaskDates)
+        val btnBack = findViewById<ImageView>(R.id.btnBack)
+
+
+        btnBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
+
+        val taskName = intent.getStringExtra("taskName")
+        val taskDescription = intent.getStringExtra("taskDescription")
+        val taskUser = intent.getStringExtra("taskUser")
+        val startDateMillis = intent.getLongExtra("taskStartDate", 0L)
+        val endDateMillis = intent.getLongExtra("taskEndDate", 0L)
+
+        val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        val startDate = dateFormat.format(Date(startDateMillis))
+        val endDate = dateFormat.format(Date(endDateMillis))
+
+        txtName.text = taskName
+        txtDescription.text = taskDescription
+        txtUser.text = "Asignado a: $taskUser"
+        txtDates.text = "Desde $startDate hasta $endDate"
     }
 }
