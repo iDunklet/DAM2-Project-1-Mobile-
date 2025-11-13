@@ -10,7 +10,9 @@ import android.widget.Button
 import android.widget.Toast
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import java.io.File
+import android.util.Log
+import com.google.gson.GsonBuilder
+import java.util.Date
 
 class MainActivity : AppCompatActivity() {
     private lateinit var projects: List<Project>
@@ -22,11 +24,9 @@ class MainActivity : AppCompatActivity() {
 
         startAnimations()
         loadJson()
-        val jsonString = File(filesDir, "data.json").readText()
 
         val btnLogin = findViewById<Button>(R.id.btnLogin)
         btnLogin.setOnClickListener {
-            // Salte a ProjectDetailActivity cuando haga clic
             val intent = Intent(this, ProjectDetailActivity::class.java)
             startActivity(intent)
         }
@@ -34,27 +34,23 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadJson() {
         try {
-            val jsonFile = File(filesDir, "data.json")
+            // Abrimos el archivo JSON desde res/raw
+            val inputStream = resources.openRawResource(R.raw.data)
+            val jsonString = inputStream.bufferedReader().use { it.readText() }
 
-            if (!jsonFile.exists()) {
-                Toast.makeText(this, "Archivo JSON no encontrado", Toast.LENGTH_SHORT).show()
-                projects = emptyList()
-                return
-            }
+            val gson = GsonBuilder()
+                .registerTypeAdapter(Date::class.java, DateDeserializer())
+                .create()
 
-            val jsonString = jsonFile.readText()
             val type = object : TypeToken<List<Project>>() {}.type
-            projects = Gson().fromJson(jsonString, type)
+            projects = gson.fromJson(jsonString, type)
 
-            // Verificar que se cargaron los datos
-            Toast.makeText(this, "Cargados ${projects.size} proyectos", Toast.LENGTH_SHORT).show()
 
         } catch (e: Exception) {
             Toast.makeText(this, "Error cargando JSON: ${e.message}", Toast.LENGTH_LONG).show()
             projects = emptyList()
         }
     }
-
 
     private fun startAnimations() {
         val circle1 = findViewById<View>(R.id.circle1)
@@ -67,5 +63,4 @@ class MainActivity : AppCompatActivity() {
         circle2.startAnimation(floatAnimation)
         circle3.startAnimation(floatAnimation)
     }
-
 }

@@ -1,14 +1,15 @@
 package com.example.mobile
 
+import com.google.gson.annotations.SerializedName
 import java.util.Calendar
 import java.util.Date
 
 data class Task(
-    var taskName: String,
-    var taskDescription: String,
-    var taskStartDate: Date,
-    var taskEndDate: Date,
-    var assignedUser: User?,
-    var taskStatus: String
+    @SerializedName("nombreTarea") var taskName: String,
+    @SerializedName("descripcionTarea") var taskDescription: String?,
+    @SerializedName("fechaInicioTarea") var taskStartDate: Date,
+    @SerializedName("fechaFinTarea") var taskEndDate: Date,
+    @SerializedName("responsableAsignado") var assignedUser: User?,
+    @SerializedName("statusTarea") var taskStatus: String
 )
 
