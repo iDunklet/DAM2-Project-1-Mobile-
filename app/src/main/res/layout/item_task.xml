@@ -1,12 +1,27 @@
 
-<TextView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/taskNameText"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="24dp"
-    android:layout_marginBottom="4dp"
-    android:gravity="center_vertical"
-    android:paddingHorizontal="6dp"
-    android:textSize="12sp"
-    android:text="Tarea" />
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="4dp"
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true">
+
+    <TextView
+        android:id="@+id/taskNameText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tarea"
+        android:textSize="14sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/taskDescriptionText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Descripción"
+        android:textSize="12sp"
+        android:textColor="@android:color/darker_gray"/>
+</LinearLayout>
+
 
