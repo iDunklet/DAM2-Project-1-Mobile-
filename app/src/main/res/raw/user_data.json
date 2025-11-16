@@ -1,0 +1,142 @@
+[
+  {
+    "nombre": "Juan",
+    "apellido1": "García",
+    "apellido2": null,
+    "fechaNacimiento": "2000-05-15T00:00:00",
+    "classe": "DAM2",
+    "email": "juan.garcia@ies.es",
+    "password": "pass123",
+    "userName": "JGARCÍA"
+  },
+  {
+    "nombre": "María",
+    "apellido1": "Fernández",
+    "apellido2": null,
+    "fechaNacimiento": "2001-08-12T00:00:00",
+    "classe": "DAM2",
+    "email": "maria.fernandez@ies.es",
+    "password": "pass789",
+    "userName": "MFERNÁNDEZ"
+  },
+  {
+    "nombre": "David",
+    "apellido1": "Martín",
+    "apellido2": null,
+    "fechaNacimiento": "2002-11-05T00:00:00",
+    "classe": "DAM2",
+    "email": "david.martin@ies.es",
+    "password": "pass101",
+    "userName": "DMARTÍN"
+  },
+  {
+    "nombre": "Carlos",
+    "apellido1": "Ruiz",
+    "apellido2": "De la Fuente",
+    "fechaNacimiento": "2003-03-01T00:00:00",
+    "classe": "DAM2",
+    "email": "carlos.ruiz@ies.es",
+    "password": "pass456",
+    "userName": "CRUIZ"
+  },
+  {
+    "nombre": "Pedro",
+    "apellido1": "Sánchez",
+    "apellido2": null,
+    "fechaNacimiento": "1999-04-18T00:00:00",
+    "classe": "DAW2",
+    "email": "pedro.sanchez@ies.es",
+    "password": "pass404",
+    "userName": "PSÁNCHEZ"
+  },
+  {
+    "nombre": "Ana",
+    "apellido1": "López",
+    "apellido2": null,
+    "fechaNacimiento": "1998-11-22T00:00:00",
+    "classe": "DAW1",
+    "email": "ana.lopez@ies.es",
+    "password": "pass303",
+    "userName": "ALÓPEZ"
+  },
+  {
+    "nombre": "Sofia",
+    "apellido1": "Ramírez",
+    "apellido2": null,
+    "fechaNacimiento": "2001-07-30T00:00:00",
+    "classe": "DAW1",
+    "email": "sofia.ramirez@ies.es",
+    "password": "pass505",
+    "userName": "SRAMÍREZ"
+  },
+  {
+    "nombre": "Eva",
+    "apellido1": "Sanz",
+    "apellido2": null,
+    "fechaNacimiento": "2001-07-07T00:00:00",
+    "classe": "ASIX1",
+    "email": "eva.sanz@ies.es",
+    "password": "pass707",
+    "userName": "ESANZ"
+  },
+  {
+    "nombre": "Miguel",
+    "apellido1": "Díaz",
+    "apellido2": null,
+    "fechaNacimiento": "2002-09-09T00:00:00",
+    "classe": "ASIX2",
+    "email": "miguel.diaz@ies.es",
+    "password": "pass808",
+    "userName": "MDÍAZ"
+  },
+  {
+    "nombre": "Javier",
+    "apellido1": "Ortega",
+    "apellido2": null,
+    "fechaNacimiento": "2000-02-14T00:00:00",
+    "classe": "DAW2",
+    "email": "javier.ortega@ies.es",
+    "password": "pass606",
+    "userName": "JORTEGA"
+  },
+  {
+    "nombre": "Raúl",
+    "apellido1": "Castro",
+    "apellido2": null,
+    "fechaNacimiento": "2003-06-11T00:00:00",
+    "classe": "ASIX2",
+    "email": "raul.castro@ies.es",
+    "password": "pass010",
+    "userName": "RCASTRO"
+  },
+  {
+    "nombre": "Carmen",
+    "apellido1": "Vega",
+    "apellido2": null,
+    "fechaNacimiento": "2001-01-19T00:00:00",
+    "classe": "ASIX1",
+    "email": "carmen.vega@ies.es",
+    "password": "pass909",
+    "userName": "CVEGA"
+  },
+  {
+    "nombre": "Profesor",
+    "apellido1": "Informática",
+    "apellido2": null,
+    "fechaNacimiento": "1980-03-10T00:00:00",
+    "classe": "PROF",
+    "email": "prof.informatica@ies.es",
+    "password": "prof123",
+    "userName": "PINFORMÁTICA"
+  },
+  {
+    "nombre": "Laura",
+    "apellido1": "Gómez",
+    "apellido2": null,
+    "fechaNacimiento": "2000-12-25T00:00:00",
+    "classe": "DAM2",
+    "email": "laura.gomez@ies.es",
+    "password": "pass202",
+    "userName": "LGÓMEZ"
+  }
+]
