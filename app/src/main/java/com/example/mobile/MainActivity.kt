@@ -2,6 +2,7 @@ package com.example.mobile
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.activity.enableEdgeToEdge
@@ -56,6 +57,24 @@ class MainActivity : AppCompatActivity() {
             projects = gson.fromJson(projectJsonString, type)
             users = gson.fromJson(userJsonString, type)
 
+
+        } catch (e: Exception) {
+            Toast.makeText(this, "Error cargando JSON: ${e.message}", Toast.LENGTH_LONG).show()
+            projects = emptyList()
+        }
+        try {
+            // Abrimos el archivo JSON desde res/raw
+            val inputStream = resources.openRawResource(R.raw.user_data)
+            val jsonString = inputStream.bufferedReader().use { it.readText() }
+
+            val gson = GsonBuilder()
+                .registerTypeAdapter(Date::class.java, DateDeserializer())
+                .create()
+
+            val type = object : TypeToken<List<Project>>() {}.type
+            users = gson.fromJson(jsonString, type)
+
+            Log.d("USER_LOAD", "Usuarios cargados: ${users.size}")
 
         } catch (e: Exception) {
             Toast.makeText(this, "Error cargando JSON: ${e.message}", Toast.LENGTH_LONG).show()
