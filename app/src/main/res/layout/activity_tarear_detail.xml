@@ -36,6 +36,15 @@
             android:textSize="20sp"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="56dp" />
+        <TextView
+            android:id="@+id/txtTiempo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tiempo"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="30dp"/>
     </FrameLayout>
 
 
@@ -99,6 +108,7 @@
                 android:background="@drawable/rectanglestatus"
                 android:padding="50dp">
                 <LinearLayout
+                    android:id="@+id/txtStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
@@ -115,12 +125,14 @@
                         android:background="@color/oscuro"
                         android:layout_marginTop="10dp"/>
                     <TextView
+                        android:id="@+id/txtSinEmpezar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Sin Empezar"
                         android:textSize="20sp"
                         android:layout_marginTop="10dp"/>
                     <TextView
+                        android:id="@+id/txtEnProceso"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="En Proceso"
@@ -128,6 +140,7 @@
                         android:textColor="@color/oscuro"
                         android:layout_marginTop="10dp"/>
                     <TextView
+                        android:id="@+id/txtHecho"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Hecho"
@@ -153,19 +166,7 @@
                     android:textSize="20sp"
                     android:layout_marginTop="40dp"/>
 
-
-
-
-
-
-
-
-
             </FrameLayout>
-
-
-
-
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
