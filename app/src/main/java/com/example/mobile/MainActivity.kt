@@ -7,15 +7,17 @@ import android.view.animation.AnimationUtils
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
-import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import android.util.Log
 import com.google.gson.GsonBuilder
 import java.util.Date
 
 class MainActivity : AppCompatActivity() {
     private lateinit var projects: List<Project>
+    private lateinit var users: List<User>
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,22 +30,31 @@ class MainActivity : AppCompatActivity() {
         val btnLogin = findViewById<Button>(R.id.btnLogin)
         btnLogin.setOnClickListener {
             val intent = Intent(this, ProjectDetailActivity::class.java)
-            startActivity(intent)
+            if (checkUser()){
+                startActivity(intent)
+            } else{
+                Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show()
+            }
+
         }
     }
 
     private fun loadJson() {
         try {
             // Abrimos el archivo JSON desde res/raw
-            val inputStream = resources.openRawResource(R.raw.data)
-            val jsonString = inputStream.bufferedReader().use { it.readText() }
+            val projectsInput = resources.openRawResource(R.raw.projects)
+            val usersInput = resources.openRawResource(R.raw.users)
+
+            val projectJsonString = projectsInput.bufferedReader().use { it.readText() }
+            val userJsonString = usersInput.bufferedReader().use { it.readText() }
 
             val gson = GsonBuilder()
                 .registerTypeAdapter(Date::class.java, DateDeserializer())
                 .create()
 
             val type = object : TypeToken<List<Project>>() {}.type
-            projects = gson.fromJson(jsonString, type)
+            projects = gson.fromJson(projectJsonString, type)
+            users = gson.fromJson(userJsonString, type)
 
 
         } catch (e: Exception) {
@@ -63,4 +74,19 @@ class MainActivity : AppCompatActivity() {
         circle2.startAnimation(floatAnimation)
         circle3.startAnimation(floatAnimation)
     }
+    fun checkUser(): Boolean {
+        val inputUsername = findViewById<EditText>(R.id.etUsername).text.toString()
+        val inputPassword = findViewById<EditText>(R.id.etPassword).text.toString()
+
+        for (user in users) {
+            if (user.firstName == inputUsername && user.password == inputPassword) {
+                return true
+            }
+        }
+        return false
+    }
+
+
 }
+
+
