@@ -143,29 +143,17 @@
         android:background="@drawable/circle_turquesa"
         android:translationX="260dp"
         android:translationY="600dp" />
-    <androidx.core.widget.NestedScrollView
+
+    <!-- CONTENEDOR SIMPLIFICADO - REEMPLAZA EL RECYCLERVIEW -->
+    <LinearLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/headerBackground"
         android:layout_marginTop="75dp"
-        android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
-        android:padding="16dp"
-        android:scrollbars="vertical"
-        android:fadeScrollbars="false"
-        android:scrollbarThumbVertical="@drawable/custom_scrollbar"
-        android:scrollbarSize="8dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-
-
-
-        </LinearLayout>
-
-    </androidx.core.widget.NestedScrollView>
+        android:layout_marginRight="20dp"
+        android:orientation="vertical"
+        android:padding="8dp" />
 
 </RelativeLayout>

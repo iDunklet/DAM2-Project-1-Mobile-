@@ -1,7 +1,7 @@
 package com.example.mobile
 
 import com.google.gson.annotations.SerializedName
-import java.util.Calendar
+import java.io.Serializable
 import java.util.Date
 
 data class Task(
@@ -11,5 +11,4 @@ data class Task(
     @SerializedName("fechaFinTarea") var taskEndDate: Date,
     @SerializedName("responsableAsignado") var assignedUser: User?,
     @SerializedName("statusTarea") var taskStatus: String
-)
-
+               ) : Serializable

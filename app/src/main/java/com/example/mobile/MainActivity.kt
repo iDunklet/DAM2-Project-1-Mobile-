@@ -30,8 +30,10 @@ class MainActivity : AppCompatActivity() {
 
         val btnLogin = findViewById<Button>(R.id.btnLogin)
         btnLogin.setOnClickListener {
-            val intent = Intent(this, ProjectDetailActivity::class.java)
+            val intent = Intent(this, ProjectsActivity::class.java)
             if (checkUser()){
+                intent.putExtra("projects", ArrayList(projects))
+                intent.putExtra("users", ArrayList(users))
                 startActivity(intent)
             } else{
                 Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show()
@@ -42,45 +44,42 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadJson() {
         try {
-            // Abrimos el archivo JSON desde res/raw
+            // Cargar projects
             val projectsInput = resources.openRawResource(R.raw.projects)
-            val usersInput = resources.openRawResource(R.raw.users)
-
             val projectJsonString = projectsInput.bufferedReader().use { it.readText() }
-            val userJsonString = usersInput.bufferedReader().use { it.readText() }
 
             val gson = GsonBuilder()
                 .registerTypeAdapter(Date::class.java, DateDeserializer())
                 .create()
 
-            val type = object : TypeToken<List<Project>>() {}.type
-            projects = gson.fromJson(projectJsonString, type)
-            users = gson.fromJson(userJsonString, type)
-
+            val projectType = object : TypeToken<List<Project>>() {}.type
+            projects = gson.fromJson(projectJsonString, projectType)
 
         } catch (e: Exception) {
-            Toast.makeText(this, "Error cargando JSON: ${e.message}", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Error cargando PROJECTS JSON: ${e.message}", Toast.LENGTH_LONG).show()
             projects = emptyList()
         }
+
         try {
-            // Abrimos el archivo JSON desde res/raw
-            val inputStream = resources.openRawResource(R.raw.user_data)
-            val jsonString = inputStream.bufferedReader().use { it.readText() }
+            // Cargar users
+            val usersInput = resources.openRawResource(R.raw.users) // Usa el archivo correcto
+            val usersJsonString = usersInput.bufferedReader().use { it.readText() }
 
             val gson = GsonBuilder()
                 .registerTypeAdapter(Date::class.java, DateDeserializer())
                 .create()
 
-            val type = object : TypeToken<List<Project>>() {}.type
-            users = gson.fromJson(jsonString, type)
+            val userType = object : TypeToken<List<User>>() {}.type
+            users = gson.fromJson(usersJsonString, userType)
 
             Log.d("USER_LOAD", "Usuarios cargados: ${users.size}")
 
         } catch (e: Exception) {
-            Toast.makeText(this, "Error cargando JSON: ${e.message}", Toast.LENGTH_LONG).show()
-            projects = emptyList()
+            Toast.makeText(this, "Error cargando USERS JSON: ${e.message}", Toast.LENGTH_LONG).show()
+            users = emptyList()
         }
     }
+
 
     private fun startAnimations() {
         val circle1 = findViewById<View>(R.id.circle1)
