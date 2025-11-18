@@ -26,6 +26,8 @@ class TarearDetailActivity : AppCompatActivity() {
         val btnEmpezar = findViewById<Button>(R.id.btnEmpezar)
         val btnTerminar = findViewById<Button>(R.id.btnTerminal)
         val txtSinEmpezar = findViewById<TextView>(R.id.txtSinEmpezar)
+        val txtEnProceso = findViewById<TextView>(R.id.txtEnProceso)
+        val txtTerminar = findViewById<TextView>(R.id.txtHecho)
 
 
 
@@ -47,12 +49,15 @@ class TarearDetailActivity : AppCompatActivity() {
         txtDescription.text = taskDescription
         txtUser.text = "Asignado a: $taskUser"
         txtDates.text = "Desde $startDate hasta $endDate"
+        txtSinEmpezar.setTextColor(resources.getColor(R.color.Turquesa))
 
         btnEmpezar.setOnClickListener {
             startTime = System.currentTimeMillis()
             isTiming = true
             txtTime.text = "Empezado"
-            txtSinEmpezar.setTextColor(resources.getColor(R.color.Turquesa))
+            txtEnProceso.setTextColor(resources.getColor(R.color.Turquesa))
+            txtSinEmpezar.setTextColor(resources.getColor(R.color.oscuro))
+            txtTerminar.setTextColor(resources.getColor((R.color.oscuro)))
 
         }
 
@@ -65,9 +70,12 @@ class TarearDetailActivity : AppCompatActivity() {
 
             val timeString = String.format("%d:%02d", minutes, seconds)
             txtTime.text = "Terminado: $timeString"
+            txtTerminar.setTextColor(resources.getColor(R.color.Turquesa))
+            txtSinEmpezar.setTextColor(resources.getColor(R.color.oscuro))
+            txtEnProceso.setTextColor(resources.getColor(R.color.oscuro))
         }
 
 
-        }
     }
+}
 
