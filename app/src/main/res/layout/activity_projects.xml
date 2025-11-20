@@ -131,16 +131,22 @@
         android:translationX="260dp"
         android:translationY="600dp" />
 
-    <!-- CONTENEDOR SIMPLIFICADO - REEMPLAZA EL RECYCLERVIEW -->
-    <LinearLayout
-        android:id="@+id/container"
+    <!-- SCROLLVIEW QUE ENVUELVE EL CONTENEDOR PARA HACERLO SCROLLABLE -->
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/headerBackground"
         android:layout_marginTop="75dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:orientation="vertical"
-        android:padding="8dp" />
+        android:fillViewport="true">
+
+        <!-- CONTENEDOR SIMPLIFICADO - REEMPLAZA EL RECYCLERVIEW -->
+        <LinearLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp" />
+
+    </ScrollView>
 
 </RelativeLayout>
