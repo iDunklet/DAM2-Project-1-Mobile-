@@ -22,60 +22,71 @@ class TarearDetailActivity : AppCompatActivity() {
         val txtTime = findViewById<TextView>(R.id.txtTiempo)
         val txtUser = findViewById<TextView>(R.id.txtTaskUser)
         val txtDates = findViewById<TextView>(R.id.txtTaskDates)
+
         val btnBack = findViewById<ImageView>(R.id.btnBack)
         val btnEmpezar = findViewById<Button>(R.id.btnEmpezar)
         val btnTerminar = findViewById<Button>(R.id.btnTerminal)
+
         val txtSinEmpezar = findViewById<TextView>(R.id.txtSinEmpezar)
         val txtEnProceso = findViewById<TextView>(R.id.txtEnProceso)
-        val txtTerminar = findViewById<TextView>(R.id.txtHecho)
-
-
-
-
+        val txtHecho = findViewById<TextView>(R.id.txtHecho)
 
         btnBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
 
-        val taskName = intent.getStringExtra("taskName")
-        val taskDescription = intent.getStringExtra("taskDescription")
-        val taskUser = intent.getStringExtra("taskUser")
-        val startDateMillis = intent.getLongExtra("taskStartDate", 0L)
-        val endDateMillis = intent.getLongExtra("taskEndDate", 0L)
+        val task = intent.getSerializableExtra("task") as? Task
+        if (task == null) {
+            txtName.text = "Error: no se encontró la tarea"
+            return
+        }
 
+        // Mostrar datos del Task
+        txtName.text = task.taskName
+        txtDescription.text = task.taskDescription
+
+        // Usuario asignado
+        val assignedUserName =
+            task.assignedUser?.let { "${it.firstName} ${it.lastName1 ?: ""}" } ?: "Sin usuario"
+        txtUser.text = "Asignado a: $assignedUserName"
+
+        // Fechas
         val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-        val startDate = dateFormat.format(Date(startDateMillis))
-        val endDate = dateFormat.format(Date(endDateMillis))
+        val startDate = dateFormat.format(task.taskStartDate)
+        val endDate = dateFormat.format(task.taskEndDate)
 
-        txtName.text = taskName
-        txtDescription.text = taskDescription
-        txtUser.text = "Asignado a: $taskUser"
         txtDates.text = "Desde $startDate hasta $endDate"
-        txtSinEmpezar.setTextColor(resources.getColor(R.color.Turquesa))
 
+        // Estado inicial → Sin empezar
+        txtSinEmpezar.setTextColor(resources.getColor(R.color.Turquesa))
+        txtEnProceso.setTextColor(resources.getColor(R.color.oscuro))
+        txtHecho.setTextColor(resources.getColor(R.color.oscuro))
+
+        // ▶️ Botón Empezar → cambia estado
         btnEmpezar.setOnClickListener {
             startTime = System.currentTimeMillis()
             isTiming = true
-            txtTime.text = "Empezado"
+
+            txtTime.text = "En proceso..."
             txtEnProceso.setTextColor(resources.getColor(R.color.Turquesa))
             txtSinEmpezar.setTextColor(resources.getColor(R.color.oscuro))
-            txtTerminar.setTextColor(resources.getColor((R.color.oscuro)))
-
+            txtHecho.setTextColor(resources.getColor(R.color.oscuro))
         }
 
+        // ✔️ Botón Terminar → calcula tiempo
         btnTerminar.setOnClickListener {
+            if (!isTiming) return@setOnClickListener
+
             val endTime = System.currentTimeMillis()
             val elapsed = endTime - startTime
-            val totalSeconds = (elapsed / 1000).toInt()
-            val minutes = totalSeconds / 60
-            val seconds = totalSeconds % 60
+
+            val minutes = (elapsed / 1000 / 60).toInt()
+            val seconds = (elapsed / 1000 % 60).toInt()
 
             val timeString = String.format("%d:%02d", minutes, seconds)
-            txtTime.text = "Terminado: $timeString"
-            txtTerminar.setTextColor(resources.getColor(R.color.Turquesa))
+            txtTime.text = "Terminado en: $timeString"
+
+            txtHecho.setTextColor(resources.getColor(R.color.Turquesa))
             txtSinEmpezar.setTextColor(resources.getColor(R.color.oscuro))
             txtEnProceso.setTextColor(resources.getColor(R.color.oscuro))
         }
-
-
     }
 }
-

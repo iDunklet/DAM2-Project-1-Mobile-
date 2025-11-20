@@ -2,8 +2,9 @@
 <resources>
     <dimen name="circle_size">215dp</dimen>
     <dimen name="rect_turquesa_height">125dp</dimen>
-    <dimen name="padding_tarea">4dp</dimen>
+    <dimen name="padding_tarea">30dp</dimen>
     <dimen name="text_tarea">18sp</dimen>
     <dimen name="margin_tarea">4dp</dimen>
     <dimen name="height_tarea">40dp</dimen>
+
 </resources>
