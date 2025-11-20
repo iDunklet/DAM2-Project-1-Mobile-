@@ -78,19 +78,6 @@
                 android:textColor="@android:color/black" />
 
             <TextView
-                android:id="@+id/tabFavorites"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Favorites"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:paddingVertical="12dp"
-                android:background="?attr/selectableItemBackground"
-                android:textColor="@android:color/black" />
-
-            <TextView
                 android:id="@+id/tabAll"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

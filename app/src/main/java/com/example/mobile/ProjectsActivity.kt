@@ -16,7 +16,6 @@ import androidx.core.view.WindowInsetsCompat
 class ProjectsActivity : AppCompatActivity() {
 
     private lateinit var tabRecent: TextView
-    private lateinit var tabFavorites: TextView
     private lateinit var tabAll: TextView
     private lateinit var indicator: View
     private lateinit var container: LinearLayout
@@ -49,7 +48,6 @@ class ProjectsActivity : AppCompatActivity() {
 
     private fun findViews() {
         tabRecent = findViewById(R.id.tabRecent)
-        tabFavorites = findViewById(R.id.tabFavorites)
         tabAll = findViewById(R.id.tabAll)
         indicator = findViewById(R.id.indicator)
         container = findViewById(R.id.container)
@@ -129,13 +127,8 @@ class ProjectsActivity : AppCompatActivity() {
             filterProjects("recent")
         }
 
-        tabFavorites.setOnClickListener {
-            changeTab(2)
-            filterProjects("favorites")
-        }
-
         tabAll.setOnClickListener {
-            changeTab(3)
+            changeTab(2) // Changed from 3 to 2
             filterProjects("all")
         }
     }
@@ -143,7 +136,7 @@ class ProjectsActivity : AppCompatActivity() {
     private fun filterProjects(filter: String) {
         val filteredProjects = when (filter) {
             "recent" -> projects.takeLast(5)
-            "favorites" -> projects.filter { it.title.contains("importante", ignoreCase = true) }
+            // Removed "favorites" filter since we removed the favorites tab
             else -> projects
         }
         showProjects(filteredProjects)
@@ -190,7 +183,6 @@ class ProjectsActivity : AppCompatActivity() {
 
     private fun changeColors() {
         tabRecent.setTextColor(ContextCompat.getColor(this, android.R.color.black))
-        tabFavorites.setTextColor(ContextCompat.getColor(this, android.R.color.black))
         tabAll.setTextColor(ContextCompat.getColor(this, android.R.color.black))
 
         val selected = getSelectedView()
@@ -200,8 +192,7 @@ class ProjectsActivity : AppCompatActivity() {
     private fun getSelectedView(): TextView {
         return when(selectedTab) {
             1 -> tabRecent
-            2 -> tabFavorites
-            3 -> tabAll
+            2 -> tabAll // Changed from 3 to 2
             else -> tabRecent
         }
     }
