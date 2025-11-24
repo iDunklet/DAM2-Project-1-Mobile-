@@ -101,9 +101,9 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="Tareas"
-            android:textSize="15dp"
             android:textColor="@color/oscuro"
-            android:textStyle="bold"/>
+            android:textSize="15dp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tabResumenes"
@@ -115,6 +115,13 @@
             android:textColor="@color/oscuro"
             android:textStyle="normal" />
     </LinearLayout>
+    <View
+        android:id="@+id/indicator"
+        android:layout_width="0dp"
+        android:layout_height="3dp"
+        android:layout_below="@id/tabBar"
+        android:background="#FF9800"
+        android:layout_marginTop="2dp" />
 
     <ScrollView
         android:id="@+id/scrollTasks"
