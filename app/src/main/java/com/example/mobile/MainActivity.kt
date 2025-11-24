@@ -8,6 +8,7 @@ import android.view.animation.AnimationUtils
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
 import com.google.gson.reflect.TypeToken
@@ -20,6 +21,8 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -28,18 +31,48 @@ class MainActivity : AppCompatActivity() {
         startAnimations()
         loadJson()
 
+        val prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE)
+        val cbRemember = findViewById<CheckBox>(R.id.cbRemember)
+        val etUsername = findViewById<EditText>(R.id.etUsername)
+        val etPassword = findViewById<EditText>(R.id.etPassword)
         val btnLogin = findViewById<Button>(R.id.btnLogin)
+
+// Recuperar estado guardado
+        cbRemember.isChecked = prefs.getBoolean("rememberMe", false)
+        etUsername.setText(prefs.getString("username", ""))
+        etPassword.setText(prefs.getString("password", ""))
+
+// Guardar estado del checkbox
+        cbRemember.setOnCheckedChangeListener { _, isChecked ->
+            prefs.edit().putBoolean("rememberMe", isChecked).apply()
+        }
+
+// Login
         btnLogin.setOnClickListener {
-            val intent = Intent(this, ProjectsActivity::class.java)
-            if (checkUser()){
+            if (checkUser()) {
+                val editor = prefs.edit()
+                if (cbRemember.isChecked) {
+                    editor.putString("username", etUsername.text.toString())
+                    editor.putString("password", etPassword.text.toString())
+                } else {
+                    editor.remove("username")
+                    editor.remove("password")
+                }
+                editor.apply()
+
+                val intent = Intent(this, ProjectsActivity::class.java)
                 intent.putExtra("projects", ArrayList(projects))
                 intent.putExtra("users", ArrayList(users))
                 startActivity(intent)
-            } else{
+            } else {
                 Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show()
             }
-
         }
+
+
+
+
+
     }
 
     private fun loadJson() {
