@@ -10,7 +10,7 @@
         android:id="@+id/taskNameText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/background3"
+        android:background="@drawable/background"
         android:gravity="center_vertical"
         android:textSize="16sp"
         android:paddingHorizontal="@dimen/padding_tarea"

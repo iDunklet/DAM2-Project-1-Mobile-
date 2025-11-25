@@ -6,5 +6,7 @@
     <dimen name="text_tarea">18sp</dimen>
     <dimen name="margin_tarea">4dp</dimen>
     <dimen name="height_tarea">40dp</dimen>
+    <dimen name="botonWidth_tarea">140dp</dimen>
+    <dimen name="botonheight_tarea">50dp</dimen>
 
 </resources>

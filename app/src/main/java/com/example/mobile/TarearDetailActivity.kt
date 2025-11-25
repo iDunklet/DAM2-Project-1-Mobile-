@@ -60,7 +60,6 @@ class TarearDetailActivity : AppCompatActivity() {
         txtEnProceso.setTextColor(resources.getColor(R.color.oscuro))
         txtHecho.setTextColor(resources.getColor(R.color.oscuro))
 
-        // ▶️ Botón Empezar → cambia estado
         btnEmpezar.setOnClickListener {
             startTime = System.currentTimeMillis()
             isTiming = true
@@ -71,7 +70,7 @@ class TarearDetailActivity : AppCompatActivity() {
             txtHecho.setTextColor(resources.getColor(R.color.oscuro))
         }
 
-        // ✔️ Botón Terminar → calcula tiempo
+
         btnTerminar.setOnClickListener {
             if (!isTiming) return@setOnClickListener
 
