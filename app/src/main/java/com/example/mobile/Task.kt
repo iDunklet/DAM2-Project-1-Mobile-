@@ -10,5 +10,6 @@ data class Task(
     @SerializedName("fechaInicioTarea") var taskStartDate: Date,
     @SerializedName("fechaFinTarea") var taskEndDate: Date,
     @SerializedName("responsableAsignado") var assignedUser: User?,
-    @SerializedName("statusTarea") var taskStatus: String
+    @SerializedName("statusTarea") var taskStatus: String,
+    @SerializedName("horas") var taskTime: Int?
                ) : Serializable
