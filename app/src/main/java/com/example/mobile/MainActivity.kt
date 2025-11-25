@@ -73,6 +73,11 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
+    }
+    override fun onPause() {
+        super.onPause()
+        saveProjects(this, projects)
     }
 
     private fun loadJson() {
