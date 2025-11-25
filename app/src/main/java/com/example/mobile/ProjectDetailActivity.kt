@@ -21,6 +21,8 @@ class ProjectDetailActivity : AppCompatActivity() {
     private lateinit var pendientesLayout: LinearLayout
     private lateinit var hechasLayout: LinearLayout
 
+    private lateinit var progresoLayout:LinearLayout
+
     private var selectedTab = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,6 +40,7 @@ class ProjectDetailActivity : AppCompatActivity() {
 
         pendientesLayout = findViewById(R.id.pendientesContainer)
         hechasLayout = findViewById(R.id.hechasContainer)
+        progresoLayout = findViewById(R.id.progresoContainer)
 
         val selectedProject = intent.getSerializableExtra("selected_project") as? Project
             ?: return
@@ -90,12 +93,22 @@ class ProjectDetailActivity : AppCompatActivity() {
             tabTareas.setTypeface(null, android.graphics.Typeface.NORMAL)
         }
     }
+    private fun saveProjectChanges() {
+
+    }
+
 
     private fun addTaskToLayout(task: Task) {
-        val (layoutRes, parentLayout) = if (task.taskStatus.equals("Pendiente", ignoreCase = true)) {
+        val (layoutRes, parentLayout) = when{
+            task.taskStatus.equals("Pendiente", ignoreCase = true) -> {
             R.layout.tareas_pendientes to pendientesLayout
-        } else {
-            R.layout.tareas_hechas to hechasLayout
+        }
+            task.taskStatus.equals("En progreso", ignoreCase = true)-> {
+            R.layout.tareas_enprogreso to progresoLayout
+        }
+            else -> {
+                R.layout.tareas_hechas to hechasLayout
+        }
         }
 
         val taskView = layoutInflater.inflate(layoutRes, parentLayout, false)
@@ -105,18 +118,28 @@ class ProjectDetailActivity : AppCompatActivity() {
 
         val btnEmpezar = taskView.findViewById<Button>(R.id.btnEmpezar)
         if (btnEmpezar !=null){
-            btnEmpezar.visibility = if (task.taskStatus.equals("Pendientes", ignoreCase = true)){
-               View.VISIBLE
-            }else{
-                View.GONE
-            }
-            btnEmpezar.setOnClickListener{
-                task.taskStatus = "Hecha"
+            btnEmpezar.visibility =
+                if (task.taskStatus.equals("Hecha", ignoreCase = true)) View.GONE
+                else View.VISIBLE
+
+            btnEmpezar.setOnClickListener {
+
+
+                task.taskStatus = when (task.taskStatus) {
+                    "Pendiente" -> "En Progreso"
+                    "En Progreso" -> "Hecha"
+                    else -> task.taskStatus
+                }
+
+                saveProjectChanges()
+
+
                 parentLayout.removeView(taskView)
                 addTaskToLayout(task)
             }
-
         }
+
+
         taskView.setOnClickListener {
             val intent = Intent(this, TarearDetailActivity::class.java)
             intent.putExtra("task", task)
@@ -124,6 +147,6 @@ class ProjectDetailActivity : AppCompatActivity() {
         }
 
         parentLayout.addView(taskView)
-
     }
+
 }
