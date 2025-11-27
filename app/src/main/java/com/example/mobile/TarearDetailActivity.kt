@@ -5,6 +5,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -50,10 +51,30 @@ class TarearDetailActivity : AppCompatActivity() {
 
         // Fechas
         val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+
+        val startDate = task.taskStartDate?.let { dateFormat.format(it) } ?: "Sin fecha"
+        val endDate = task.taskEndDate?.let { dateFormat.format(it) } ?: "Sin fecha"
+
+        txtDates.text = "Desde $startDate hasta $endDate"
+
+
+        val horas = task.taskTime ?: 0
+        txtTime.text = "Tiempo: $horas:00"
+        if(horas!= 0){
+            btnEmpezar.isEnabled = true
+            btnEmpezar.setTextColor(ContextCompat.getColor(this, R.color.white))
+        } else {
+
+            btnEmpezar.isEnabled = false
+            btnEmpezar.setTextColor(ContextCompat.getColor(this, R.color.black))
+
+        }
+
+        /*val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
         val startDate = dateFormat.format(task.taskStartDate)
         val endDate = dateFormat.format(task.taskEndDate)
 
-        txtDates.text = "Desde $startDate hasta $endDate"
+        txtDates.text = "Desde $startDate hasta $endDate"*/
 
         // Estado inicial → Sin empezar
         txtSinEmpezar.setTextColor(resources.getColor(R.color.Turquesa))
@@ -87,5 +108,7 @@ class TarearDetailActivity : AppCompatActivity() {
             txtSinEmpezar.setTextColor(resources.getColor(R.color.oscuro))
             txtEnProceso.setTextColor(resources.getColor(R.color.oscuro))
         }
+
+
     }
 }

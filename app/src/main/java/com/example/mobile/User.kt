@@ -9,7 +9,7 @@ data class User(
     @SerializedName("nombre") val firstName: String,
     @SerializedName("apellido1") val lastName1: String,
     @SerializedName("apellido2") val lastName2: String?,
-    @SerializedName("fechaNacimiento") val birthDate: Date,
+    @SerializedName("fechaNacimiento") val birthDate: Date?,
     @SerializedName("classe") val className: String,
     @SerializedName("email") val email: String,
     var password: String,
