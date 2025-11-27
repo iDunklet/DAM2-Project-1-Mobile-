@@ -7,6 +7,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class PersonalInfoActivity : AppCompatActivity() {
+
+    private lateinit var user: List<User>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -16,5 +19,11 @@ class PersonalInfoActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        user = intent.getSerializableExtra("users") as? ArrayList<User> ?: emptyList()
+
+
+
+
     }
 }

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.AnimationUtils
+import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -19,6 +20,7 @@ class ProjectsActivity : AppCompatActivity() {
     private lateinit var tabAll: TextView
     private lateinit var indicator: View
     private lateinit var container: LinearLayout
+
     private var selectedTab = 1
 
     private lateinit var projects: List<Project>
@@ -33,9 +35,10 @@ class ProjectsActivity : AppCompatActivity() {
         projects = intent.getSerializableExtra("projects") as? ArrayList<Project> ?: emptyList()
         users = intent.getSerializableExtra("users") as? ArrayList<User> ?: emptyList()
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        val mainView = findViewById<View>(R.id.main)
+        ViewCompat.setOnApplyWindowInsetsListener(mainView) { view, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            view.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
@@ -44,6 +47,15 @@ class ProjectsActivity : AppCompatActivity() {
         setupClicks()
         startAnimations()
         setupFirstTab()
+
+        val IBinfoperson: ImageButton = findViewById(R.id.IBinfoperson)
+        IBinfoperson.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                val intent = Intent(this@ProjectsActivity, PersonalInfoActivity::class.java)
+                intent.putExtra("users", ArrayList(users))
+                startActivity(intent)
+            }
+        })
     }
 
     private fun findViews() {
@@ -54,90 +66,89 @@ class ProjectsActivity : AppCompatActivity() {
     }
 
     private fun setupContainer() {
-        // Limpiar contenedor y agregar todos los proyectos
         showProjects(projects)
     }
 
     private fun showProjects(projectList: List<Project>) {
-        // Limpiar contenedor
         container.removeAllViews()
 
         if (projectList.isEmpty()) {
-            // Mostrar mensaje si no hay proyectos
-            val emptyView = TextView(this).apply {
-                text = "No hay proyectos disponibles"
-                textSize = 16f
-                setTextColor(ContextCompat.getColor(context, android.R.color.darker_gray))
-                gravity = android.view.Gravity.CENTER
-                setPadding(0, 100, 0, 0)
-            }
+            val emptyView = TextView(this)
+            emptyView.text = "No hay proyectos disponibles"
+            emptyView.textSize = 16f
+            emptyView.setTextColor(ContextCompat.getColor(this, android.R.color.darker_gray))
+            emptyView.gravity = android.view.Gravity.CENTER
+            emptyView.setPadding(0, 100, 0, 0)
             container.addView(emptyView)
             return
         }
 
-        // Crear y agregar vistas para cada proyecto
-        projectList.forEach { project ->
+        for (project in projectList) {
             val projectView = createProjectView(project)
             container.addView(projectView)
         }
     }
 
     private fun createProjectView(project: Project): View {
-        // Inflar el layout del item
         val inflater = LayoutInflater.from(this)
         val projectView = inflater.inflate(R.layout.project_item, container, false)
 
-        // Configurar los datos
         val tvTitle: TextView = projectView.findViewById(R.id.tvProjectTitle)
         val tvMembers: TextView = projectView.findViewById(R.id.tvProjectMembers)
         val tvTasks: TextView = projectView.findViewById(R.id.tvProjectTasks)
 
         tvTitle.text = project.title
 
-        // Miembros
-        val membersText = if (project.projectMembers.isNotEmpty()) {
-            "Miembros: ${project.projectMembers.joinToString { it.firstName ?: "Sin nombre" }}"
+        val membersText: String
+        if (project.projectMembers.isNotEmpty()) {
+            membersText = "Miembros: " + project.projectMembers.joinToString { it.firstName ?: "Sin nombre" }
         } else {
-            "Miembros: No hay miembros"
+            membersText = "Miembros: No hay miembros"
         }
         tvMembers.text = membersText
 
-        // Tareas
-        val tasksText = if (project.projectTasks.isNotEmpty()) {
-            "Tareas: ${project.projectTasks.size} tarea(s)"
+        val tasksText: String
+        if (project.projectTasks.isNotEmpty()) {
+            tasksText = "Tareas: " + project.projectTasks.size + " tarea(s)"
         } else {
-            "Tareas: No hay tareas"
+            tasksText = "Tareas: No hay tareas"
         }
         tvTasks.text = tasksText
 
-        // Click listener para cada proyecto - ABRE PROJECT DETAIL
-        projectView.setOnClickListener {
-            val intent = Intent(this, ProjectDetailActivity::class.java)
-            intent.putExtra("selected_project", project)
-            intent.putExtra("users", ArrayList(users))
-            startActivity(intent)
-        }
+        projectView.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                val intent = Intent(this@ProjectsActivity, ProjectDetailActivity::class.java)
+                intent.putExtra("selected_project", project)
+                intent.putExtra("users", ArrayList(users))
+                startActivity(intent)
+            }
+        })
 
         return projectView
     }
 
     private fun setupClicks() {
-        tabRecent.setOnClickListener {
-            changeTab(1)
-            filterProjects("recent")
-        }
+        tabRecent.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                changeTab(1)
+                filterProjects("recent")
+            }
+        })
 
-        tabAll.setOnClickListener {
-            changeTab(2) // Changed from 3 to 2
-            filterProjects("all")
-        }
+        tabAll.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                changeTab(2)
+                filterProjects("all")
+            }
+        })
     }
 
     private fun filterProjects(filter: String) {
-        val filteredProjects = when (filter) {
-            "recent" -> projects.takeLast(5)
-            // Removed "favorites" filter since we removed the favorites tab
-            else -> projects
+        val filteredProjects: List<Project>
+        if (filter == "recent") {
+            filteredProjects = projects.takeLast(5)
+        } else {
+            filteredProjects = projects
         }
         showProjects(filteredProjects)
     }
@@ -155,10 +166,12 @@ class ProjectsActivity : AppCompatActivity() {
     }
 
     private fun setupFirstTab() {
-        tabRecent.post {
-            moveIndicator()
-            changeColors()
-        }
+        tabRecent.post(object : Runnable {
+            override fun run() {
+                moveIndicator()
+                changeColors()
+            }
+        })
         filterProjects("all")
     }
 
@@ -190,10 +203,12 @@ class ProjectsActivity : AppCompatActivity() {
     }
 
     private fun getSelectedView(): TextView {
-        return when(selectedTab) {
-            1 -> tabRecent
-            2 -> tabAll // Changed from 3 to 2
-            else -> tabRecent
+        return if (selectedTab == 1) {
+            tabRecent
+        } else if (selectedTab == 2) {
+            tabAll
+        } else {
+            tabRecent
         }
     }
 }
