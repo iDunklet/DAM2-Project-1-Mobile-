@@ -28,7 +28,7 @@ class TarearDetailActivity : AppCompatActivity() {
         val btnTerminar = findViewById<Button>(R.id.btnTerminal)
 
         val txtSinEmpezar = findViewById<TextView>(R.id.txtSinEmpezar)
-        val txtEnProceso = findViewById<TextView>(R.id.txtEnProceso)
+        val txtEnProceso = findViewById<TextView>(R.id.txtEnProgreso)
         val txtHecho = findViewById<TextView>(R.id.txtHecho)
 
         btnBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
