@@ -1,6 +1,6 @@
 [
   {
-    "ID": 0,
+    "ID": 1,
     "titulo": "App Móvil DAM2",
     "fechaEntrega": "2024-06-15T00:00:00",
     "miembrosProyecto": [
@@ -52,7 +52,7 @@
           "userName": "JGARCÍA"
         },
         "statusTarea": "En progreso",
-        "horas": null
+        "horas": 2
       },
       {
         "nombreTarea": "Desarrollo Backend",
@@ -70,7 +70,7 @@
           "userName": "MFERNÁNDEZ"
         },
         "statusTarea": "Pendiente",
-        "horas": null
+        "horas": 0
       },
       {
         "nombreTarea": "Documentación API",
@@ -88,7 +88,7 @@
           "userName": "CRUIZ"
         },
         "statusTarea": "Completada",
-        "horas": null
+        "horas": 3
       },
       {
         "nombreTarea": "Diseño Logo",
@@ -106,12 +106,12 @@
           "userName": "PSÁNCHEZ"
         },
         "statusTarea": "Completada",
-        "horas": null
+        "horas": 8
       }
     ]
   },
   {
-    "ID": 0,
+    "ID": 2,
     "titulo": "Portal Web Institucional",
     "fechaEntrega": "2024-07-01T00:00:00",
     "miembrosProyecto": [
@@ -173,7 +173,7 @@
           "userName": "ALÓPEZ"
         },
         "statusTarea": "Completada",
-        "horas": null
+        "horas": 5
       },
       {
         "nombreTarea": "Base de Datos SQL",
@@ -191,7 +191,7 @@
           "userName": "ESANZ"
         },
         "statusTarea": "En progreso",
-        "horas": null
+        "horas": 1
       },
       {
         "nombreTarea": "Configuración Servidor",
@@ -209,7 +209,7 @@
           "userName": "MDÍAZ"
         },
         "statusTarea": "En progreso",
-        "horas": null
+        "horas": 1
       },
       {
         "nombreTarea": "Implementación Seguridad",
@@ -227,12 +227,12 @@
           "userName": "SRAMÍREZ"
         },
         "statusTarea": "En progreso",
-        "horas": null
+        "horas": 2
       }
     ]
   },
   {
-    "ID": 0,
+    "ID": 3,
     "titulo": "Sistema Gestión Escolar",
     "fechaEntrega": "2024-08-20T00:00:00",
     "miembrosProyecto": [
@@ -294,7 +294,7 @@
           "userName": "JORTEGA"
         },
         "statusTarea": "Completada",
-        "horas": null
+        "horas": 5
       },
       {
         "nombreTarea": "Diagramas UML",
@@ -312,7 +312,7 @@
           "userName": "CVEGA"
         },
         "statusTarea": "Completada",
-        "horas": null
+        "horas": 1
       },
       {
         "nombreTarea": "Planificación Proyecto",
@@ -330,7 +330,7 @@
           "userName": "RCASTRO"
         },
         "statusTarea": "En progreso",
-        "horas": null
+        "horas": 1
       },
       {
         "nombreTarea": "Estudio Viabilidad",
@@ -348,12 +348,12 @@
           "userName": "PINFORMÁTICA"
         },
         "statusTarea": "Pendiente",
-        "horas": null
+        "horas": 0
       }
     ]
   },
   {
-    "ID": 0,
+    "ID": 4,
     "titulo": "Tienda Online ASIX",
     "fechaEntrega": "2024-09-10T00:00:00",
     "miembrosProyecto": [
@@ -405,7 +405,7 @@
           "userName": "DMARTÍN"
         },
         "statusTarea": "Pendiente",
-        "horas": null
+        "horas": 0
       },
       {
         "nombreTarea": "Optimización Código",
@@ -423,7 +423,7 @@
           "userName": "LGÓMEZ"
         },
         "statusTarea": "Pendiente",
-        "horas": null
+        "horas": 0
       },
       {
         "nombreTarea": "Revisión Código",
@@ -441,12 +441,12 @@
           "userName": "JGARCÍA"
         },
         "statusTarea": "Pendiente",
-        "horas": null
+        "horas": 0
       }
     ]
   },
   {
-    "ID": 0,
+    "ID": 5,
     "titulo": "Red Social Educativa",
     "fechaEntrega": "2024-10-05T00:00:00",
     "miembrosProyecto": [
@@ -508,7 +508,7 @@
           "userName": "MFERNÁNDEZ"
         },
         "statusTarea": "Pendiente",
-        "horas": null
+        "horas": 0
       },
       {
         "nombreTarea": "Backup Base de Datos",
@@ -526,12 +526,12 @@
           "userName": "ESANZ"
         },
         "statusTarea": "Pendiente",
-        "horas": null
+        "horas": 0
       }
     ]
   },
   {
-    "ID": 0,
+    "ID": 6,
     "titulo": "Aplicación del Clima",
     "fechaEntrega": "2024-05-30T00:00:00",
     "miembrosProyecto": [
@@ -573,7 +573,7 @@
           "userName": "JGARCÍA"
         },
         "statusTarea": "En progreso",
-        "horas": null
+        "horas": 2
       },
       {
         "nombreTarea": "Desarrollo Backend",
@@ -591,12 +591,12 @@
           "userName": "MFERNÁNDEZ"
         },
         "statusTarea": "Pendiente",
-        "horas": null
+        "horas": 0
       }
     ]
   },
   {
-    "ID": 0,
+    "ID": 7,
     "titulo": "Juego Educativo Infantil",
     "fechaEntrega": "2024-11-15T00:00:00",
     "miembrosProyecto": [
@@ -648,7 +648,7 @@
           "userName": "PSÁNCHEZ"
         },
         "statusTarea": "Completada",
-        "horas": null
+        "horas": 8
       },
       {
         "nombreTarea": "Implementación Seguridad",
@@ -666,12 +666,12 @@
           "userName": "SRAMÍREZ"
         },
         "statusTarea": "En progreso",
-        "horas": null
+        "horas": 2
       }
     ]
   },
   {
-    "ID": 0,
+    "ID": 8,
     "titulo": "Proyecto de Prueba",
     "fechaEntrega": "2024-12-01T00:00:00",
     "miembrosProyecto": [
