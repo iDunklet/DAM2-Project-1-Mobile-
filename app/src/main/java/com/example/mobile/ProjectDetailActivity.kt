@@ -22,6 +22,7 @@ class ProjectDetailActivity : AppCompatActivity() {
     private lateinit var hechasLayout: LinearLayout
 
     private lateinit var progresoLayout:LinearLayout
+    private lateinit var selectedProject: Project
 
     private var selectedTab = 0
 
@@ -41,6 +42,8 @@ class ProjectDetailActivity : AppCompatActivity() {
         pendientesLayout = findViewById(R.id.pendientesContainer)
         hechasLayout = findViewById(R.id.hechasContainer)
         progresoLayout = findViewById(R.id.progresoContainer)
+        selectedProject = intent.getSerializableExtra("selected_project") as? Project ?: return
+
 
         val selectedProject = intent.getSerializableExtra("selected_project") as? Project
             ?: return
@@ -142,9 +145,12 @@ class ProjectDetailActivity : AppCompatActivity() {
 
         taskView.setOnClickListener {
             val intent = Intent(this, TarearDetailActivity::class.java)
-            intent.putExtra("task", task)
+            intent.putExtra("project", selectedProject) // Project 必须是 Serializable
+            val taskIndex = selectedProject.projectTasks.indexOf(task)
+            intent.putExtra("taskIndex", taskIndex)
             startActivity(intent)
         }
+
 
         parentLayout.addView(taskView)
     }
