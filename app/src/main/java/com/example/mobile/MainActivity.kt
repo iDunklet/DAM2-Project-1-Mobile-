@@ -19,10 +19,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var projects: List<Project>
     private lateinit var users: List<User>
 
-
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -49,7 +45,8 @@ class MainActivity : AppCompatActivity() {
 
 // Login
         btnLogin.setOnClickListener {
-            if (checkUser()) {
+            val loggedUser = checkUser()
+            if (loggedUser != null) {
                 val editor = prefs.edit()
                 if (cbRemember.isChecked) {
                     editor.putString("username", etUsername.text.toString())
@@ -62,7 +59,7 @@ class MainActivity : AppCompatActivity() {
 
                 val intent = Intent(this, ProjectsActivity::class.java)
                 intent.putExtra("projects", ArrayList(projects))
-                intent.putExtra("users", ArrayList(users))
+                intent.putExtra("user", loggedUser)
                 startActivity(intent)
             } else {
                 Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show()
@@ -125,17 +122,18 @@ class MainActivity : AppCompatActivity() {
         circle2.startAnimation(floatAnimation)
         circle3.startAnimation(floatAnimation)
     }
-    fun checkUser(): Boolean {
+    fun checkUser(): User? {
         val inputUsername = findViewById<EditText>(R.id.etUsername).text.toString()
         val inputPassword = findViewById<EditText>(R.id.etPassword).text.toString()
 
         for (user in users) {
             if (user.firstName == inputUsername && user.password == inputPassword) {
-                return true
+                return user
             }
         }
-        return false
+        return null
     }
+
 
 
 }
