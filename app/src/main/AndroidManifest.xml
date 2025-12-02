@@ -25,11 +25,11 @@
             android:exported="true" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".ProjectChartsActivity"
             android:exported="true" />
 
         <activity
-            android:name=".ProjectChartsActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
