@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/turquesa_transparente"
+    tools:context=".ProjectDetailActivity">
+
+    <!-- 1. ENCABEZADO (HEADER) -->
+    <FrameLayout
+        android:id="@+id/titleBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="40dp"
+        android:paddingBottom="20dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+        <!-- Flecha Atrás -->
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_arrow_back"
+            android:layout_gravity="center_vertical|start"
+            app:tint="@color/naranja"/>
+        <!-- Nota: usa tu icono de flecha aquí -->
+
+        <!-- Título y Estrella -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="50dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Proyecto 1"
+                android:textColor="@color/oscuro"
+                android:textStyle="bold"
+                android:textSize="22sp" />
+
+            <!-- Estrella (puedes usar un drawable vector asset) -->
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/estrella"
+                app:tint="#FBC02D"/>
+        </LinearLayout>
+
+        <!-- Miembros (lado derecho) -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical|end"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="X"
+                android:textSize="14sp"
+                android:textColor="@color/black"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="miembros"
+                android:textSize="12sp"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+    </FrameLayout>
+
+    <!-- 2. TABS (PESTAÑAS) -->
+    <LinearLayout
+        android:id="@+id/tabBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:layout_below="@id/titleBar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <!-- Tab Tareas -->
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tareas"
+                    android:textColor="@color/oscuro"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_centerInParent="true"/>
+                <!-- Indicador Rojo -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:background="@color/oscuro"
+                    android:layout_alignParentBottom="true"/>
+            </RelativeLayout>
+
+            <!-- Tab Resumenes -->
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Resumenes"
+                    android:textColor="@color/naranja"
+                    android:textSize="16sp"
+                    android:layout_centerInParent="true"/>
+                <!-- Línea gris inferior -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:background="@color/naranja"
+                    android:layout_alignParentBottom="true"/>
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- 3. CONTENIDO CON SCROLL -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tabBar"
+        android:background="@color/white"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- BARRA LATERAL IZQUIERDA PERSONALIZADA -->
+            <FrameLayout
+                android:layout_width="14dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="32dp">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_scroll_track" />
+
+                <View
+                    android:id="@+id/customScrollIndicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="0dp"
+                    android:background="@drawable/bg_scroll_indicator" />
+            </FrameLayout>
+
+            <!-- ZONA DE GRÁFICOS -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingEnd="16dp"
+                android:paddingTop="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Horas por tareas"
+                    android:textSize="18sp"
+                    android:textColor="@color/oscuro"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="20dp"/>
+
+                <!-- ESTRUCTURA DE LA GRÁFICA (SIMULADA) -->
+                <!-- Esto es una tabla simple para imitar las barras -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:orientation="horizontal"
+                    android:gravity="bottom">
+
+                    <!-- Eje Y (Números) -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal"
+                        android:paddingEnd="8dp">
+                        <!-- Truco: Views vacías con peso para distribuir números -->
+                        <TextView android:text="8" android:textColor="@color/oscuro" android:layout_weight="1" android:layout_width="wrap_content" android:layout_height="0dp"/>
+                        <TextView android:text="6" android:textColor="@color/oscuro" android:layout_weight="1" android:layout_width="wrap_content" android:layout_height="0dp"/>
+                        <TextView android:text="4" android:textColor="@color/oscuro" android:layout_weight="1" android:layout_width="wrap_content" android:layout_height="0dp"/>
+                        <TextView android:text="2" android:textColor="@color/oscuro" android:layout_weight="1" android:layout_width="wrap_content" android:layout_height="0dp"/>
+                        <TextView android:text="0" android:textColor="@color/oscuro" android:layout_weight="1" android:layout_width="wrap_content" android:layout_height="0dp"/>
+                    </LinearLayout>
+
+                    <!-- Línea vertical Eje Y -->
+                    <View
+                        android:layout_width="2dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/oscuro"/>
+
+                    <!-- BARRAS -->
+                    <!-- Barra 1 -->
+                    <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="match_parent" android:gravity="bottom" android:orientation="vertical" android:layout_marginHorizontal="2dp">
+                        <View android:layout_width="20dp" android:layout_height="30dp" android:background="@color/oscuro" android:layout_gravity="center"/>
+                        <TextView android:text="T1" android:textSize="10sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:rotation="-45"/>
+                    </LinearLayout>
+
+                    <!-- Barra 2 (Más alta) -->
+                    <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="match_parent" android:gravity="bottom" android:orientation="vertical" android:layout_marginHorizontal="2dp">
+                        <View android:layout_width="20dp" android:layout_height="80dp" android:background="@color/oscuro" android:layout_gravity="center"/>
+                        <TextView android:text="T2" android:textSize="10sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:rotation="-45"/>
+                    </LinearLayout>
+
+                    <!-- Barra 3 (Muy alta) -->
+                    <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="match_parent" android:gravity="bottom" android:orientation="vertical" android:layout_marginHorizontal="2dp">
+                        <View android:layout_width="20dp" android:layout_height="150dp" android:background="@color/oscuro" android:layout_gravity="center"/>
+                        <TextView android:text="T3" android:textSize="10sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:rotation="-45"/>
+                    </LinearLayout>
+
+                    <!-- Barra 4 -->
+                    <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="match_parent" android:gravity="bottom" android:orientation="vertical" android:layout_marginHorizontal="2dp">
+                        <View android:layout_width="20dp" android:layout_height="120dp" android:background="@color/oscuro" android:layout_gravity="center"/>
+                        <TextView android:text="T4" android:textSize="10sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:rotation="-45"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Línea horizontal base -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/oscuro"
+                    android:layout_marginStart="20dp"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

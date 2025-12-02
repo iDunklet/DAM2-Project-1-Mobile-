@@ -40,7 +40,7 @@
         "nombreTarea": "Diseño UI/UX",
         "descripcionTarea": "yfyfyufyufuydfu",
         "fechaInicioTarea": "2024-01-15T00:00:00",
-        "fechaFinTarea": null,
+        "fechaFinTarea": "2024-01-15T00:00:00",
         "responsableAsignado": {
           "nombre": "Juan",
           "apellido1": "García",
@@ -191,7 +191,7 @@
           "userName": "ESANZ"
         },
         "statusTarea": "En progreso",
-        "horas": 1
+        "horas": 4
       },
       {
         "nombreTarea": "Configuración Servidor",
