@@ -9,7 +9,7 @@
     android:background="#F5F5F5"
     tools:context=".PersonalInfoActivity">
 
-    <!-- Saludo -->
+    <!-- Saludotest -->
     <TextView
         android:id="@+id/tvGreeting"
         android:layout_width="wrap_content"
