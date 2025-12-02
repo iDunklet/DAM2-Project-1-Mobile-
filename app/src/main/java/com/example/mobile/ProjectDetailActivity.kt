@@ -303,3 +303,4 @@ class ProjectDetailActivity : AppCompatActivity() {
         parentLayout.addView(taskView)
     }
 }
+//
