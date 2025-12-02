@@ -76,8 +76,9 @@ class PersonalInfoActivity : AppCompatActivity() {
     }
 
     private fun filterTasksDone(userTasks: List<Task>): Int {
-        return userTasks.count { it.taskStatus.equals("Pendiente", ignoreCase = true) }
+        return userTasks.count { it.taskStatus.equals("Completada", ignoreCase = true) }
     }
+
 
 
     private fun filterTasks(): List<Task> {
