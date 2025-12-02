@@ -208,7 +208,18 @@
                     android:layout_marginRight="20dp"
                     />
 
+
             </FrameLayout>
+            <Button
+                android:id="@+id/btnReiniciar"
+                android:layout_width="@dimen/botonWidth_tarea"
+                android:layout_height="@dimen/botonheight_tarea"
+                android:layout_gravity="center|bottom"
+                android:text="Reiniciar"
+                android:backgroundTint="@color/turquesa"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                />
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

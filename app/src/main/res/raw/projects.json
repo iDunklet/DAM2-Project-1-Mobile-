@@ -38,7 +38,7 @@
     "tareasProyecto": [
       {
         "nombreTarea": "Diseño UI/UX",
-        "descripcionTarea": "yfyfyufyufuydfu",
+        "descripcionTarea": "El diseño UI (Interfaz de Usuario) y UX (Experiencia de Usuario) es el proceso de crear productos digitales que sean funcionales, atractivos y fáciles de usar.",
         "fechaInicioTarea": "2024-01-15T00:00:00",
         "fechaFinTarea": "2024-01-15T00:00:00",
         "responsableAsignado": {
@@ -51,7 +51,7 @@
           "password": "pass123",
           "userName": "JGARCÍA"
         },
-        "statusTarea": "En progreso",
+        "statusTarea": "Pendiente",
         "horas": 2
       },
       {
