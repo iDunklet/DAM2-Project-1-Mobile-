@@ -450,16 +450,7 @@
     "titulo": "Red Social Educativa",
     "fechaEntrega": "2024-10-05T00:00:00",
     "miembrosProyecto": [
-      {
-        "nombre": "Juan",
-        "apellido1": "García",
-        "apellido2": null,
-        "fechaNacimiento": "2000-05-15T00:00:00",
-        "classe": "DAM2",
-        "email": "juan.garcia@ies.es",
-        "password": "pass123",
-        "userName": "JGARCÍA"
-      },
+
       {
         "nombre": "Carlos",
         "apellido1": "Ruiz",

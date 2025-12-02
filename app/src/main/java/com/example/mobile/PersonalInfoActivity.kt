@@ -1,6 +1,7 @@
 package com.example.mobile
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -23,38 +24,46 @@ class PersonalInfoActivity : AppCompatActivity() {
 
     private lateinit var projects: List<Project>
 
-    private lateinit var userTasks: MutableList<Task>
+    private var userTasks: MutableList<Task> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_personal_info)
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
         loadView()
         user = intent.getSerializableExtra("user") as User
         projects = intent.getSerializableExtra("projects") as? ArrayList<Project> ?: emptyList()
 
         filterProjects()
+        userTasks = filterTasks().toMutableList()
 
-        var userTasks = filterTasks()
-        var tasksDone = filterTasksDone(userTasks)
-        var tasksUndone = filterTasksUndone(userTasks)
+        val tasksDone = filterTasksDone(userTasks)
+        val tasksUndone = filterTasksUndone(userTasks)
 
         tvTasksDone.text = tasksDone.toString()
         tvTasksPending.text = tasksUndone.toString()
-        var score = calcularPuntuacion(tasksDone, tasksUndone)
 
+        val score = calcularPuntuacion(tasksDone, tasksUndone)
         tvScore.text = score.toString()
-        var greeting: String
 
-        greeting = "¡Bienvenido" + user.firstName + "!"
+        val greeting = "¡Bienvenido ${user.firstName}!"
         tvGreeting.text = greeting
 
-
+        tvFullName.text = "${user.firstName} ${user.lastName1} ${user.lastName2 ?: ""}"
+        Log.d("PersonalInfoActivity", "Tareas del usuario: ${userTasks.size}")
+        for (task in userTasks) {
+            Log.d(
+                "PersonalInfoActivity",
+                "Tarea: ${task.taskName}, Estado: ${task.taskStatus}, Responsable: ${task.assignedUser?.userName}"
+            )
+        }
 
     }
 
@@ -63,30 +72,18 @@ class PersonalInfoActivity : AppCompatActivity() {
     }
 
     private fun filterTasksUndone(userTasks: List<Task>): Int {
-        var i = 0
-        for (task in userTasks) {
-            if (task.taskStatus.contains("Pendiente")) {
-                i++
-            }
-        }
-        return i
+        return userTasks.count { it.taskStatus.equals("Pendiente", ignoreCase = true) }
     }
 
     private fun filterTasksDone(userTasks: List<Task>): Int {
-        var i = 0
-        for (task in userTasks) {
-            if (task.taskStatus.contains("Completada")) {
-                i++
-            }
-        }
-        return i
+        return userTasks.count { it.taskStatus.equals("Pendiente", ignoreCase = true) }
     }
 
 
     private fun filterTasks(): List<Task> {
         for (project in projects) {
             for (task in project.projectTasks) {
-                if (task.assignedUser == user) {
+                if (task.assignedUser?.userName == user.userName) {
                     userTasks.add(task)
                 }
             }
@@ -99,10 +96,11 @@ class PersonalInfoActivity : AppCompatActivity() {
     }
 
     private fun loadView() {
-        findViewById<TextView>(R.id.tvGreeting)
-        findViewById<TextView>(R.id.tvFullName)
-        findViewById<TextView>(R.id.tvTasksDone)
-        findViewById<TextView>(R.id.tvScore)
-        findViewById<TextView>(R.id.tvTasksPending)
+        tvGreeting = findViewById(R.id.tvGreeting)
+        tvFullName = findViewById(R.id.tvFullName)
+        tvTasksDone = findViewById(R.id.tvTasksDone)
+        tvScore = findViewById(R.id.tvScore)
+        tvTasksPending = findViewById(R.id.tvTasksPending)
+
     }
 }

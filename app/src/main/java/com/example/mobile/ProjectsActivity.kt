@@ -2,6 +2,7 @@ package com.example.mobile
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.AnimationUtils
@@ -31,9 +32,22 @@ class ProjectsActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_projects)
 
-        // Obtener datos del intent
+        initData()
+        initViews()
+        initListeners()
+        initAnimations()
+        initTabs()
+    }
+
+    // -------------------------------
+    // Inicialización
+    // -------------------------------
+    private fun initData() {
         projects = intent.getSerializableExtra("projects") as? ArrayList<Project> ?: emptyList()
         user = intent.getSerializableExtra("user") as User
+    }
+
+    private fun initViews() {
         val mainView = findViewById<View>(R.id.main)
         ViewCompat.setOnApplyWindowInsetsListener(mainView) { view, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -41,45 +55,81 @@ class ProjectsActivity : AppCompatActivity() {
             insets
         }
 
-        findViews()
-        setupContainer()
-        setupClicks()
-        startAnimations()
-        setupFirstTab()
-
-        val IBinfoperson: ImageButton = findViewById(R.id.IBinfoperson)
-        IBinfoperson.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                val intent = Intent(this@ProjectsActivity, PersonalInfoActivity::class.java)
-                intent.putExtra("user", user)
-                intent.putExtra("projects", ArrayList(projects))
-                startActivity(intent)
-            }
-        })
-    }
-
-    private fun findViews() {
         tabRecent = findViewById(R.id.tabRecent)
         tabAll = findViewById(R.id.tabAll)
         indicator = findViewById(R.id.indicator)
         container = findViewById(R.id.container)
+
+        val IBinfoperson: ImageButton = findViewById(R.id.IBinfoperson)
+        IBinfoperson.setOnClickListener { openPersonalInfo() }
     }
 
-    private fun setupContainer() {
-        val userProjects = projects.filter { it.projectMembers.contains(user) }
-        showProjects(userProjects)
+    private fun initListeners() {
+        tabRecent.setOnClickListener {
+            changeTab(1)
+            filterProjects("recent")
+        }
+
+        tabAll.setOnClickListener {
+            changeTab(2)
+            filterProjects("all")
+        }
+    }
+
+    private fun initAnimations() {
+        val floatAnimation = AnimationUtils.loadAnimation(this, R.anim.float_animation)
+        listOf(R.id.circle1, R.id.circle2, R.id.circle3).forEach {
+            findViewById<View>(it).startAnimation(floatAnimation)
+        }
+    }
+
+    private fun initTabs() {
+        tabRecent.post {
+            moveIndicator()
+            changeColors()
+        }
+        filterProjects("all")
+    }
+
+    // -------------------------------
+    // Navegación
+    // -------------------------------
+    private fun openPersonalInfo() {
+        val intent = Intent(this, PersonalInfoActivity::class.java)
+        intent.putExtra("user", user)
+        intent.putExtra("projects", ArrayList(projects))
+        startActivity(intent)
+    }
+
+    // -------------------------------
+    // Filtrado y renderizado
+    // -------------------------------
+    private fun filterProjects(filter: String) {
+        val userProjects = projects.filter { project ->
+            project.projectMembers.any { it.userName == user.userName } ||
+                    project.projectTasks.any { it.assignedUser?.userName == user.userName }
+        }
+
+        val filteredProjects = if (filter == "recent") {
+            userProjects.takeLast(5)
+        } else {
+            userProjects
+        }
+
+        showProjects(filteredProjects)
     }
 
     private fun showProjects(projectList: List<Project>) {
         container.removeAllViews()
 
         if (projectList.isEmpty()) {
-            val emptyView = TextView(this)
-            emptyView.text = "No hay proyectos disponibles"
-            emptyView.textSize = 16f
-            emptyView.setTextColor(ContextCompat.getColor(this, android.R.color.darker_gray))
-            emptyView.gravity = android.view.Gravity.CENTER
-            emptyView.setPadding(0, 100, 0, 0)
+            val emptyView = TextView(this).apply {
+                text = "No hay proyectos disponibles"
+                textSize = 16f
+                setTextColor(ContextCompat.getColor(this@ProjectsActivity, android.R.color.darker_gray))
+                gravity = android.view.Gravity.CENTER
+                setPadding(0, 100, 0, 0)
+            }
             container.addView(emptyView)
             return
         }
@@ -100,81 +150,32 @@ class ProjectsActivity : AppCompatActivity() {
 
         tvTitle.text = project.title
 
-        val membersText: String
-        if (project.projectMembers.isNotEmpty()) {
-            membersText = "Miembros: " + project.projectMembers.joinToString { it.firstName ?: "Sin nombre" }
+        val membersText = if (project.projectMembers.isNotEmpty()) {
+            "Miembros: " + project.projectMembers.joinToString { it.firstName }
         } else {
-            membersText = "Miembros: No hay miembros"
+            "Miembros: No hay miembros"
         }
         tvMembers.text = membersText
 
-        val tasksText: String
-        if (project.projectTasks.isNotEmpty()) {
-            tasksText = "Tareas: " + project.projectTasks.size + " tarea(s)"
+        val tasksText = if (project.projectTasks.isNotEmpty()) {
+            "Tareas: ${project.projectTasks.size} tarea(s)"
         } else {
-            tasksText = "Tareas: No hay tareas"
+            "Tareas: No hay tareas"
         }
         tvTasks.text = tasksText
 
-        projectView.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                val intent = Intent(this@ProjectsActivity, ProjectDetailActivity::class.java)
-                intent.putExtra("selected_project", project)
-                startActivity(intent)
-            }
-        })
+        projectView.setOnClickListener {
+            val intent = Intent(this@ProjectsActivity, ProjectDetailActivity::class.java)
+            intent.putExtra("selected_project", project)
+            startActivity(intent)
+        }
 
         return projectView
     }
 
-    private fun setupClicks() {
-        tabRecent.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                changeTab(1)
-                filterProjects("recent")
-            }
-        })
-
-        tabAll.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                changeTab(2)
-                filterProjects("all")
-            }
-        })
-    }
-
-    private fun filterProjects(filter: String) {
-        val filteredProjects: List<Project>
-        if (filter == "recent") {
-            filteredProjects = projects.takeLast(5)
-        } else {
-            filteredProjects = projects
-        }
-        showProjects(filteredProjects)
-    }
-
-    private fun startAnimations() {
-        val circle1 = findViewById<View>(R.id.circle1)
-        val circle2 = findViewById<View>(R.id.circle2)
-        val circle3 = findViewById<View>(R.id.circle3)
-
-        val floatAnimation = AnimationUtils.loadAnimation(this, R.anim.float_animation)
-
-        circle1.startAnimation(floatAnimation)
-        circle2.startAnimation(floatAnimation)
-        circle3.startAnimation(floatAnimation)
-    }
-
-    private fun setupFirstTab() {
-        tabRecent.post(object : Runnable {
-            override fun run() {
-                moveIndicator()
-                changeColors()
-            }
-        })
-        filterProjects("all")
-    }
-
+    // -------------------------------
+    // Tabs UI
+    // -------------------------------
     private fun changeTab(tab: Int) {
         selectedTab = tab
         moveIndicator()
@@ -203,12 +204,6 @@ class ProjectsActivity : AppCompatActivity() {
     }
 
     private fun getSelectedView(): TextView {
-        return if (selectedTab == 1) {
-            tabRecent
-        } else if (selectedTab == 2) {
-            tabAll
-        } else {
-            tabRecent
-        }
+        return if (selectedTab == 1) tabRecent else tabAll
     }
 }
