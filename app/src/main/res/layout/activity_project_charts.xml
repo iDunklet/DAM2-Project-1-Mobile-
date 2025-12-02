@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/turquesa_transparente"
     tools:context=".ProjectDetailActivity">
 
@@ -152,7 +153,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginEnd="32dp">
+                android:layout_marginEnd="15dp">
 
             <View
                 android:layout_width="match_parent"
@@ -184,67 +185,12 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginBottom="20dp"/>
 
-                <!-- ESTRUCTURA DE LA GRÁFICA (SIMULADA) -->
-                <!-- Esto es una tabla simple para imitar las barras -->
-                <LinearLayout
+                <!-- GRÁFICO REAL MPANDROIDCHART -->
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/barChartHoras"
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
-                    android:orientation="horizontal"
-                    android:gravity="bottom">
-
-                    <!-- Eje Y (Números) -->
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:gravity="center_horizontal"
-                        android:paddingEnd="8dp">
-                        <!-- Truco: Views vacías con peso para distribuir números -->
-                        <TextView android:text="8" android:textColor="@color/oscuro" android:layout_weight="1" android:layout_width="wrap_content" android:layout_height="0dp"/>
-                        <TextView android:text="6" android:textColor="@color/oscuro" android:layout_weight="1" android:layout_width="wrap_content" android:layout_height="0dp"/>
-                        <TextView android:text="4" android:textColor="@color/oscuro" android:layout_weight="1" android:layout_width="wrap_content" android:layout_height="0dp"/>
-                        <TextView android:text="2" android:textColor="@color/oscuro" android:layout_weight="1" android:layout_width="wrap_content" android:layout_height="0dp"/>
-                        <TextView android:text="0" android:textColor="@color/oscuro" android:layout_weight="1" android:layout_width="wrap_content" android:layout_height="0dp"/>
-                    </LinearLayout>
-
-                    <!-- Línea vertical Eje Y -->
-                    <View
-                        android:layout_width="2dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/oscuro"/>
-
-                    <!-- BARRAS -->
-                    <!-- Barra 1 -->
-                    <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="match_parent" android:gravity="bottom" android:orientation="vertical" android:layout_marginHorizontal="2dp">
-                        <View android:layout_width="20dp" android:layout_height="30dp" android:background="@color/oscuro" android:layout_gravity="center"/>
-                        <TextView android:text="T1" android:textSize="10sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:rotation="-45"/>
-                    </LinearLayout>
-
-                    <!-- Barra 2 (Más alta) -->
-                    <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="match_parent" android:gravity="bottom" android:orientation="vertical" android:layout_marginHorizontal="2dp">
-                        <View android:layout_width="20dp" android:layout_height="80dp" android:background="@color/oscuro" android:layout_gravity="center"/>
-                        <TextView android:text="T2" android:textSize="10sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:rotation="-45"/>
-                    </LinearLayout>
-
-                    <!-- Barra 3 (Muy alta) -->
-                    <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="match_parent" android:gravity="bottom" android:orientation="vertical" android:layout_marginHorizontal="2dp">
-                        <View android:layout_width="20dp" android:layout_height="150dp" android:background="@color/oscuro" android:layout_gravity="center"/>
-                        <TextView android:text="T3" android:textSize="10sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:rotation="-45"/>
-                    </LinearLayout>
-
-                    <!-- Barra 4 -->
-                    <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="match_parent" android:gravity="bottom" android:orientation="vertical" android:layout_marginHorizontal="2dp">
-                        <View android:layout_width="20dp" android:layout_height="120dp" android:background="@color/oscuro" android:layout_gravity="center"/>
-                        <TextView android:text="T4" android:textSize="10sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:rotation="-45"/>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <!-- Línea horizontal base -->
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/oscuro"
-                    android:layout_marginStart="20dp"/>
+                    android:layout_marginBottom="20dp"/>
 
             </LinearLayout>
         </LinearLayout>
