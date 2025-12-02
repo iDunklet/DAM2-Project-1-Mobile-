@@ -24,7 +24,7 @@ class ProjectsActivity : AppCompatActivity() {
     private var selectedTab = 1
 
     private lateinit var projects: List<Project>
-    private lateinit var users: List<User>
+    private lateinit var user: User
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,8 +33,7 @@ class ProjectsActivity : AppCompatActivity() {
 
         // Obtener datos del intent
         projects = intent.getSerializableExtra("projects") as? ArrayList<Project> ?: emptyList()
-        users = intent.getSerializableExtra("users") as? ArrayList<User> ?: emptyList()
-
+        user = intent.getSerializableExtra("user") as User
         val mainView = findViewById<View>(R.id.main)
         ViewCompat.setOnApplyWindowInsetsListener(mainView) { view, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -49,7 +48,14 @@ class ProjectsActivity : AppCompatActivity() {
         setupFirstTab()
 
         val IBinfoperson: ImageButton = findViewById(R.id.IBinfoperson)
-
+        IBinfoperson.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                val intent = Intent(this@ProjectsActivity, PersonalInfoActivity::class.java)
+                intent.putExtra("user", user)
+                intent.putExtra("projects", ArrayList(projects))
+                startActivity(intent)
+            }
+        })
     }
 
     private fun findViews() {
@@ -60,7 +66,8 @@ class ProjectsActivity : AppCompatActivity() {
     }
 
     private fun setupContainer() {
-        showProjects(projects)
+        val userProjects = projects.filter { it.projectMembers.contains(user) }
+        showProjects(userProjects)
     }
 
     private fun showProjects(projectList: List<Project>) {
@@ -113,7 +120,6 @@ class ProjectsActivity : AppCompatActivity() {
             override fun onClick(v: View?) {
                 val intent = Intent(this@ProjectsActivity, ProjectDetailActivity::class.java)
                 intent.putExtra("selected_project", project)
-                intent.putExtra("users", ArrayList(users))
                 startActivity(intent)
             }
         })
