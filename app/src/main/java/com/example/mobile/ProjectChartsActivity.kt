@@ -9,18 +9,27 @@ import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import com.github.mikephil.charting.charts.PieChart
+import com.github.mikephil.charting.data.PieData
+import com.github.mikephil.charting.data.PieDataSet
+import com.github.mikephil.charting.data.PieEntry
 
 class ProjectChartsActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // OJO: Asegúrate de que el nombre aquí (activity_project_charts)
+        // es EXACTAMENTE el nombre de tu archivo XML en la carpeta layout.
         setContentView(R.layout.activity_project_charts)
 
-        // 1. Buscamos el gráfico que acabas de poner en el XML
-        // Asegúrate que el ID 'barChartHoras' coincida con el que pusiste en el XML
+        // --- 1. CONFIGURAR GRÁFICO DE BARRAS ---
         val barChart = findViewById<BarChart>(R.id.barChartHoras)
-
-        // 2. Llamamos a la función que lo prepara
         setupBarChart(barChart)
+
+        // --- 2. CONFIGURAR GRÁFICO DE PASTEL (FALTABA ESTO) ---
+        // Buscamos el ID que pusiste en el XML
+        val pieChart = findViewById<PieChart>(R.id.pieChartEstado)
+        // Llamamos a la función que escribiste abajo
+        setupPieChart(pieChart)
     }
 
     private fun setupBarChart(chart: BarChart) {
@@ -65,6 +74,40 @@ class ProjectChartsActivity: AppCompatActivity() {
         chart.axisLeft.gridColor = Color.parseColor("#CFD8DC") // Color gris suave para las líneas
 
         // Refrescar para ver los cambios
+        chart.invalidate()
+    }
+
+    private fun setupPieChart(chart: PieChart) {
+        // 1. DATOS DE EJEMPLO
+        val entries = ArrayList<PieEntry>()
+        entries.add(PieEntry(30f, "Pendientes"))
+        entries.add(PieEntry(50f, "En Progreso"))
+        entries.add(PieEntry(20f, "Hechas"))
+
+        // 2. COLORES (Usando tu paleta)
+        val colors = ArrayList<Int>()
+        colors.add(Color.parseColor("#FF7043")) // Naranja (Pendientes)
+        colors.add(Color.parseColor("#1A4349")) // Tu Verde Oscuro (En Progreso)
+        colors.add(Color.LTGRAY)                // Gris (Hechas)
+
+        // 3. CONFIGURACIÓN DEL DATASET
+        val dataSet = PieDataSet(entries, "")
+        dataSet.colors = colors
+        dataSet.valueTextColor = Color.WHITE
+        dataSet.valueTextSize = 14f
+
+        // 4. CARGAR DATOS
+        val pieData = PieData(dataSet)
+        chart.data = pieData
+
+        // 5. ESTILOS VISUALES
+        chart.description.isEnabled = false
+        chart.centerText = "Estado" // Texto en el agujero del donut
+        chart.setCenterTextSize(16f)
+        chart.setHoleColor(Color.TRANSPARENT) // O Color.WHITE si prefieres fondo blanco
+        chart.animateY(1000)
+
+        // Refrescar
         chart.invalidate()
     }
 }
