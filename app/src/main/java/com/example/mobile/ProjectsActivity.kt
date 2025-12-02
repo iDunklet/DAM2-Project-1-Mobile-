@@ -49,13 +49,7 @@ class ProjectsActivity : AppCompatActivity() {
         setupFirstTab()
 
         val IBinfoperson: ImageButton = findViewById(R.id.IBinfoperson)
-        IBinfoperson.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                val intent = Intent(this@ProjectsActivity, PersonalInfoActivity::class.java)
-                intent.putExtra("users", ArrayList(users))
-                startActivity(intent)
-            }
-        })
+
     }
 
     private fun findViews() {

@@ -102,7 +102,7 @@
             android:gravity="center"
             android:text="Tareas"
             android:textColor="@color/oscuro"
-            android:textSize="15dp"
+            android:textSize="20dp"
             android:textStyle="bold" />
 
         <TextView
@@ -112,6 +112,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="Resumenes"
+            android:textSize="20dp"
             android:textColor="@color/oscuro"
             android:textStyle="normal" />
     </LinearLayout>

@@ -1,5 +1,7 @@
 package com.example.mobile
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
@@ -23,6 +25,17 @@ class TarearDetailActivity : AppCompatActivity() {
     private lateinit var btnReanudar: Button
     private lateinit var btnTerminar: Button
 
+    private lateinit var btnReiniciar: Button
+    private var originalStatus: String = ""
+    private var statusChanged = false
+
+    companion object {
+        const val RESULT_STATUS_CHANGED = 1001
+        const val EXTRA_TASK_INDEX = "task_index"
+        const val EXTRA_OLD_STATUS = "old_status"
+        const val EXTRA_NEW_STATUS = "new_status"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tarear_detail)
@@ -34,15 +47,33 @@ class TarearDetailActivity : AppCompatActivity() {
         btnEmpezar = findViewById(R.id.btnEmpezar)
         btnReanudar = findViewById(R.id.btnReanudar)
         btnTerminar = findViewById(R.id.btnTerminal)
+        btnReiniciar = findViewById(R.id.btnReiniciar)
 
         val txtName = findViewById<TextView>(R.id.txtTaskName)
         val txtDescription = findViewById<TextView>(R.id.txtTaskDescription)
         val txtUser = findViewById<TextView>(R.id.txtTaskUser)
         val txtDates = findViewById<TextView>(R.id.txtTaskDates)
         val btnBack = findViewById<ImageView>(R.id.btnBack)
-        val txtTime = findViewById<TextView>(R.id.txtTiempo)
 
-        btnBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
+        btnBack.setOnClickListener {
+
+            println("DEBUG: Back button clicked")
+            println("DEBUG: Status changed: $statusChanged")
+            println("DEBUG: Original status: $originalStatus")
+            println("DEBUG: Current status: ${task.taskStatus}")
+
+            if (statusChanged) {
+                val resultIntent = Intent().apply {
+                    putExtra(EXTRA_TASK_INDEX, taskIndex)
+                    putExtra(EXTRA_OLD_STATUS, originalStatus)
+                    putExtra(EXTRA_NEW_STATUS, task.taskStatus)
+                }
+                setResult(RESULT_STATUS_CHANGED, resultIntent)
+            } else {
+                setResult(Activity.RESULT_CANCELED)
+            }
+            finish()
+        }
 
         project = intent.getSerializableExtra("project") as? Project ?: run { finish(); return }
         taskIndex = intent.getIntExtra("taskIndex", -1)
@@ -51,8 +82,14 @@ class TarearDetailActivity : AppCompatActivity() {
         }
         task = project.projectTasks[taskIndex]
 
-        val hours = task.taskTime ?: 0  // horas Pasar desde json
 
+        originalStatus = task.taskStatus
+
+        println("DEBUG: Task status from project: ${task.taskStatus}")
+        println("DEBUG: Original status saved: $originalStatus")
+        println("DEBUG: Task name: ${task.taskName}")
+
+        val hours = task.taskTime ?: 0
         txtTime.text = "Tiempo Actual: $hours:00:00 h"
 
         txtName.text = task.taskName
@@ -65,65 +102,120 @@ class TarearDetailActivity : AppCompatActivity() {
         val endDate = task.taskEndDate?.let { dateFormat.format(it) } ?: "Sin fecha"
         txtDates.text = "Desde $startDate hasta $endDate"
 
-        val hasTime = initialElapsedMillis > 0
 
-        btnEmpezar.isEnabled = !hasTime
-        btnEmpezar.setTextColor(
-            ContextCompat.getColor(
-                this,
-                if (!hasTime) R.color.white else R.color.gris
-            )
-        )
-        btnReanudar.isEnabled = hasTime
-        btnReanudar.setTextColor(
-            ContextCompat.getColor(
-                this,
-                if (hasTime) R.color.white else R.color.gris
-            )
-        )
-        txtSinEmpezar.setTextColor(resources.getColor(R.color.Turquesa))
-        txtEnProceso.setTextColor(resources.getColor(R.color.oscuro))
-        txtHecho.setTextColor(resources.getColor(R.color.oscuro))
+        initializeUIByStatus()
 
         btnEmpezar.setOnClickListener {
-            updateUIStart()
+            println("DEBUG: btnEmpezar clicked, current status: ${task.taskStatus}")
+
+            task.taskStatus = "En progreso"
+            statusChanged = true
+
+            println("DEBUG: Status after update: ${task.taskStatus}")
+            println("DEBUG: Task in project array: ${project.projectTasks[taskIndex].taskStatus}")
+
+            updateUIForStatus("En progreso")
             btnEmpezar.isEnabled = false
             btnEmpezar.setTextColor(ContextCompat.getColor(this, R.color.gris))
-
         }
+
         btnReanudar.setOnClickListener {
-            updateUIStart()
+            if (task.taskStatus.equals("Hecha", ignoreCase = true) ||
+                task.taskStatus.equals("Completada", ignoreCase = true)
+            )
+            {
+                task.taskStatus = "En progreso"
+                statusChanged = true
+                updateUIForStatus("En progreso")
+            } else {
+
+                updateUIForStatus("En progreso")
+            }
             btnReanudar.isEnabled = false
             btnReanudar.setTextColor(ContextCompat.getColor(this, R.color.gris))
         }
 
         btnTerminar.setOnClickListener {
 
-            txtEnProceso.setTextColor(resources.getColor(R.color.oscuro))
-            txtSinEmpezar.setTextColor(resources.getColor(R.color.oscuro))
-            txtHecho.setTextColor(resources.getColor(R.color.Turquesa))
-            txtTime.text = "La tarea está terminada!"
-            btnTerminar.isEnabled = false
-            btnEmpezar.isEnabled = false
-            btnReanudar.isEnabled = true
-            btnTerminar.setTextColor(ContextCompat.getColor(this, R.color.gris))
-            btnReanudar.setTextColor(ContextCompat.getColor(this, R.color.white))
+            task.taskStatus = "Hecha"
+            statusChanged = true
+            updateUIForStatus("Hecha")
+        }
+        btnReiniciar.setOnClickListener {
+
+            task.taskStatus = "Pendiente"
+            statusChanged = true
+            updateUIForStatus("Pendiente")
         }
     }
-    private fun updateUIStart() {
-        txtTime.text = "En proceso..."
-        txtEnProceso.setTextColor(resources.getColor(R.color.Turquesa))
-        txtSinEmpezar.setTextColor(resources.getColor(R.color.oscuro))
-        txtHecho.setTextColor(resources.getColor(R.color.oscuro))
-        btnTerminar.isEnabled = true
-        btnTerminar.setTextColor(ContextCompat.getColor(this, R.color.white))
+
+
+    private fun initializeUIByStatus() {
+        updateUIForStatus(task.taskStatus)
     }
 
+    private fun updateUIForStatus(status: String) {
+
+        println("DEBUG: updateUIForStatus called with: $status")
+
+        txtSinEmpezar.setTextColor(resources.getColor(R.color.oscuro))
+        txtEnProceso.setTextColor(resources.getColor(R.color.oscuro))
+        txtHecho.setTextColor(resources.getColor(R.color.oscuro))
+
+        resetButtons()
+
+        when {
+            status.equals("Pendiente", ignoreCase = true) ||
+                    status.equals("Pendientes", ignoreCase = true) ||
+                    status.equals("Sin empezar", ignoreCase = true) -> {
+
+                txtSinEmpezar.setTextColor(resources.getColor(R.color.Turquesa))
+                btnEmpezar.isEnabled = true
+                btnEmpezar.setTextColor(ContextCompat.getColor(this, R.color.white))
+                txtTime.text = "Tiempo Actual: ${task.taskTime ?: 0}:00:00 h"
+            }
+
+            status.equals("En progreso", ignoreCase = true) ||
+                    status.equals("En proceso", ignoreCase = true) -> {
+
+                txtEnProceso.setTextColor(resources.getColor(R.color.Turquesa))
+                btnReanudar.isEnabled = false
+                btnTerminar.isEnabled = true
+                btnReanudar.setTextColor(ContextCompat.getColor(this, R.color.white))
+                btnTerminar.setTextColor(ContextCompat.getColor(this, R.color.white))
+                txtTime.text = "En proceso..."
+            }
+
+            status.equals("Hecha", ignoreCase = true) ||
+                    status.equals("Hechas", ignoreCase = true) ||
+                    status.equals("Hecho", ignoreCase = true) ||
+                    status.equals("Completada", ignoreCase = true) -> {
+
+                txtHecho.setTextColor(resources.getColor(R.color.Turquesa))
+                btnReanudar.isEnabled = true
+                btnReanudar.setTextColor(ContextCompat.getColor(this, R.color.white))
+                txtTime.text = "La tarea está terminada!"
+            }
+
+            else -> {
+
+                txtSinEmpezar.setTextColor(resources.getColor(R.color.Turquesa))
+                btnEmpezar.isEnabled = true
+                btnEmpezar.setTextColor(ContextCompat.getColor(this, R.color.white))
+                txtTime.text = "Tiempo Actual: ${task.taskTime ?: 0}:00:00 h"
+            }
+        }
+    }
+
+    private fun resetButtons() {
+        btnEmpezar.isEnabled = false
+        btnReanudar.isEnabled = false
+        btnTerminar.isEnabled = false
 
 
+        btnEmpezar.setTextColor(ContextCompat.getColor(this, R.color.gris))
+        btnReanudar.setTextColor(ContextCompat.getColor(this, R.color.gris))
+        btnTerminar.setTextColor(ContextCompat.getColor(this, R.color.gris))
 
-
-
-
-
+    }
 }
