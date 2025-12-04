@@ -192,6 +192,25 @@
                     android:layout_height="250dp"
                     android:layout_marginBottom="20dp"/>
 
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Estado de Tareas"
+                    android:textSize="18sp"
+                    android:textColor="@color/oscuro"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="10dp"/>
+
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/pieChartEstado"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_marginBottom="20dp"
+                    tools:background="#EEEEEE" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
