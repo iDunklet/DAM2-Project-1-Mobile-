@@ -9,13 +9,25 @@ import java.util.Date
 import java.util.Locale
 
 class DateDeserializer : JsonDeserializer<Date> {
-    private val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
+    private val formats = listOf(
+        SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()), // ISO
+        SimpleDateFormat("MMM dd, yyyy hh:mm:ss a", Locale.ENGLISH)     // Jun 15, 2024 12:00:00 AM
+    )
 
-    override fun deserialize(json: JsonElement, typeOfT: java.lang.reflect.Type, context: JsonDeserializationContext): Date {
-        return try {
-            dateFormat.parse(json.asString) ?: throw JsonParseException("No se pudo parsear la fecha")
-        } catch (e: Exception) {
-            throw JsonParseException("Error parseando la fecha: ${json.asString}", e)
+    override fun deserialize(
+        json: JsonElement,
+        typeOfT: java.lang.reflect.Type,
+        context: JsonDeserializationContext
+    ): Date {
+        val value = json.asString
+        for (format in formats) {
+            try {
+                val parsed = format.parse(value)
+                if (parsed != null) return parsed
+            } catch (_: Exception) {
+                // sigue probando con el siguiente formato
+            }
         }
+        throw JsonParseException("Error parseando la fecha: $value")
     }
 }

@@ -71,6 +71,7 @@ class ProjectDetailActivity : AppCompatActivity() {
         loadAllTasks()
     }
 
+
     private fun loadProjectData() {
         val savedProjects = dataManager.loadProjects()
 
