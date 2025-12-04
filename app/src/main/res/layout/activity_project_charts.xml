@@ -135,8 +135,9 @@
 
     <!-- 3. CONTENIDO CON SCROLL -->
     <ScrollView
+        android:id="@+id/mainScrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="900dp"
         android:layout_below="@id/tabBar"
         android:background="@color/white"
         android:fillViewport="true">
@@ -148,22 +149,22 @@
 
             <!-- BARRA LATERAL IZQUIERDA PERSONALIZADA -->
             <FrameLayout
-                android:layout_width="14dp"
+                android:layout_width="15dp"
                 android:layout_height="match_parent"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginEnd="15dp">
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="20dp">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/bg_scroll_track" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_scroll_track" />
 
                 <View
                     android:id="@+id/customScrollIndicator"
                     android:layout_width="match_parent"
-                    android:layout_height="120dp"
+                    android:layout_height="220dp"
                     android:layout_marginTop="0dp"
                     android:background="@drawable/bg_scroll_indicator" />
             </FrameLayout>
@@ -173,37 +174,38 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingEnd="16dp"
-                android:paddingTop="20dp">
+                android:paddingTop="20dp"
+                android:paddingEnd="16dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Horas por tareas"
-                    android:textSize="18sp"
-                    android:textColor="@color/oscuro"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="20dp"/>
+                    android:layout_marginBottom="20dp"
+                    android:text="Horas por tareas"
+                    android:textColor="@color/oscuro"
+                    android:textSize="18sp" />
 
-                <!-- GRÁFICO REAL MPANDROIDCHART -->
+                <!-- GRÁFICO BARCHART -->
                 <com.github.mikephil.charting.charts.BarChart
                     android:id="@+id/barChartHoras"
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
-                    android:layout_marginBottom="20dp"/>
+                    android:layout_marginBottom="20dp" />
 
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="40dp" />
 
+                <!-- GRÁFICO PIECHART -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Estado de Tareas"
-                    android:textSize="18sp"
-                    android:textColor="@color/oscuro"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="10dp"/>
+                    android:layout_marginBottom="10dp"
+                    android:text="Estado de Tareas"
+                    android:textColor="@color/oscuro"
+                    android:textSize="18sp" />
 
                 <com.github.mikephil.charting.charts.PieChart
                     android:id="@+id/pieChartEstado"
@@ -211,6 +213,32 @@
                     android:layout_height="250dp"
                     android:layout_marginBottom="20dp"
                     tools:background="#EEEEEE" />
+
+                <!-- GRÁFICO LINECHART -->
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="10dp"
+                    android:text="Evolución Semanal"
+                    android:textColor="@color/oscuro"
+                    android:textSize="18sp" />
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/lineChartProgreso"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_marginBottom="20dp"
+                    tools:background="#EEEEEE" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp" />
+
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
