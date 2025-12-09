@@ -1,2 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_name">TASKY</string>
+    <string name="username_hint">Username</string>
+    <string name="password_hint">Password</string>
+    <string name="remember_me">Remember me</string>
+    <string name="login_button">Login</string>
+    <string name="login_error">Incorrect username or password</string>
+    <string name="select_language">Select language</string>
+    <string name="back">Back</string>
+    <string name="members">Members</string>
+    <string name="greeting">Hello Student!</string>
+    <string name="profile_picture">Profile picture</string>
+    <string name="full_name">Full name</string>
+    <string name="tasks_done">Tasks Done</string>
+    <string name="score">Score</string>
+    <string name="tasks_pending">Pending Tasks</string>
+    <string name="lang_spanish">Spanish Language</string>
+    <string name="lang_catalan">Catalan Language</string>
+    <string name="lang_english">English Language</string>
+
+</resources>

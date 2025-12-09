@@ -1,14 +1,15 @@
 package com.example.mobile
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class PersonalInfoActivity : AppCompatActivity() {
+class PersonalInfoActivity : BaseActivity() {
 
     private lateinit var tvGreeting: TextView
     private lateinit var tvFullName: TextView
@@ -47,17 +48,40 @@ class PersonalInfoActivity : AppCompatActivity() {
         val score = calcularPuntuacion(tasksDone, tasksUndone)
         tvScore.text = score.toString()
 
-        val greeting = "¡Bienvenido ${user.firstName}!"
+        val greeting = getString(R.string.greeting).replace("%s", user.firstName)
         tvGreeting.text = greeting
 
         tvFullName.text = "${user.firstName} ${user.lastName1} ${user.lastName2 ?: ""}"
 
-        Log.d("PersonalInfoActivity", "Tareas del usuario: ${userTasks.size}")
-        for (task in userTasks) {
-            Log.d(
-                "PersonalInfoActivity",
-                "Tarea: ${task.taskName}, Estado: ${task.taskStatus}, Responsable: ${task.assignedUser?.userName}"
+        val btnBack = findViewById<ImageView>(R.id.btnBack)
+        btnBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
+
+        val ivLanguage = findViewById<ImageView>(R.id.ivLanguage)
+        ivLanguage.setOnClickListener {
+            val idiomas = arrayOf("Español", "Català", "English")
+            val icons = intArrayOf(
+                R.drawable.bandera_es,
+                R.drawable.bandera_cat,
+                R.drawable.bandera_eua
             )
+
+            AlertDialog.Builder(this)
+                .setTitle(getString(R.string.select_language))
+                .setItems(idiomas) { _, which ->
+                    val newLang = when (which) {
+                        0 -> "es"
+                        1 -> "cat"
+                        2 -> "en"
+                        else -> "es"
+                    }
+                    // 🔹 Solo guardamos idioma, BaseActivity lo aplicará al recrear
+                    LanguageHelper.saveLanguagePref(this, newLang)
+
+                    ivLanguage.setImageResource(icons[which])
+
+                    recreate()
+                }
+                .show()
         }
     }
 

@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import android.widget.Button
 
-class ProjectDetailActivity : AppCompatActivity() {
+class ProjectDetailActivity : BaseActivity() {
 
     private lateinit var tabTareas: TextView
     private lateinit var tabResumenes: TextView
@@ -111,11 +111,11 @@ class ProjectDetailActivity : AppCompatActivity() {
         println("DEBUG: requestCode: $requestCode, resultCode: $resultCode")
 
         if (requestCode == REQUEST_CODE_TASK_DETAIL) {
-            if (resultCode == TarearDetailActivity.RESULT_STATUS_CHANGED) {
+            if (resultCode == TasksDetailActivity.RESULT_STATUS_CHANGED) {
 
-                val taskIndex = data?.getIntExtra(TarearDetailActivity.EXTRA_TASK_INDEX, -1) ?: -1
-                val newStatus = data?.getStringExtra(TarearDetailActivity.EXTRA_NEW_STATUS)
-                val oldStatus = data?.getStringExtra(TarearDetailActivity.EXTRA_OLD_STATUS)
+                val taskIndex = data?.getIntExtra(TasksDetailActivity.EXTRA_TASK_INDEX, -1) ?: -1
+                val newStatus = data?.getStringExtra(TasksDetailActivity.EXTRA_NEW_STATUS)
+                val oldStatus = data?.getStringExtra(TasksDetailActivity.EXTRA_OLD_STATUS)
 
                 println("DEBUG: Task index from result: $taskIndex")
                 println("DEBUG: Old status: $oldStatus")
@@ -210,20 +210,20 @@ class ProjectDetailActivity : AppCompatActivity() {
             task.taskStatus.equals("pendiente", ignoreCase = true) ||
                     task.taskStatus.equals("pendientes", ignoreCase = true) ||
                     task.taskStatus.equals("sin empezar", ignoreCase = true) -> {
-                R.layout.tareas_pendientes to pendientesLayout
+                R.layout.to_do_tasks to pendientesLayout
             }
             task.taskStatus.equals("en progreso", ignoreCase = true) ||
                     task.taskStatus.equals("en proceso", ignoreCase = true) -> {
-                R.layout.tareas_enprogreso to progresoLayout
+                R.layout.in_progress_taks to progresoLayout
             }
             task.taskStatus.equals("hecha", ignoreCase = true) ||
                     task.taskStatus.equals("hechas", ignoreCase = true) ||
                     task.taskStatus.equals("hecho", ignoreCase = true) ||
                     task.taskStatus.equals("completada", ignoreCase = true) -> {
-                R.layout.tareas_hechas to hechasLayout
+                R.layout.finished_tasks to hechasLayout
             }
             else -> {
-                R.layout.tareas_pendientes to pendientesLayout
+                R.layout.to_do_tasks to pendientesLayout
             }
         }
 
@@ -293,7 +293,7 @@ class ProjectDetailActivity : AppCompatActivity() {
 
 
         taskView.setOnClickListener {
-            val intent = Intent(this, TarearDetailActivity::class.java)
+            val intent = Intent(this, TasksDetailActivity::class.java)
             intent.putExtra("project", selectedProject)
             val taskIndex = selectedProject.projectTasks.indexOf(task)
             intent.putExtra("taskIndex", taskIndex)

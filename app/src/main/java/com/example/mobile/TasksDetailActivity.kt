@@ -11,7 +11,7 @@ import androidx.core.content.ContextCompat
 import java.text.SimpleDateFormat
 import java.util.*
 
-class TarearDetailActivity : AppCompatActivity() {
+class TasksDetailActivity : BaseActivity() {
 
     private var initialElapsedMillis: Long = 0L
     private lateinit var project: Project
@@ -38,7 +38,7 @@ class TarearDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_tarear_detail)
+        setContentView(R.layout.activity_tasks_detail)
 
         txtTime = findViewById(R.id.txtTiempo)
         txtEnProceso = findViewById(R.id.txtEnProgreso)

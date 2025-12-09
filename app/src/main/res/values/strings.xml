@@ -1,5 +1,23 @@
 <resources>
-    <string name="app_name">Mobile</string>
+    <string name="app_name">TASKY</string>
+    <string name="username_hint">Usuario</string>
+    <string name="password_hint">Contraseña</string>
+    <string name="remember_me">Recordarme</string>
+    <string name="login_button">Entrar</string>
+    <string name="login_error">Usuario o contraseña incorrectos</string>
+    <string name="select_language">Selecciona idioma</string>
+    <string name="back">Volver</string>
+    <string name="members">Miembros</string>
+    <string name="greeting">¡Hola Alumno!</string>
+    <string name="profile_picture">Foto de perfil</string>
+    <string name="full_name">Nombre completo</string>
+    <string name="tasks_done">Tareas Hechas</string>
+    <string name="score">Puntuación</string>
+    <string name="tasks_pending">Tareas Pendientes</string>
+    <string name="lang_spanish">Idioma Español</string>
+    <string name="lang_catalan">Idioma Catalán</string>
+    <string name="lang_english">Idioma Inglés</string>
+
+
 
 </resources>
-<!--español-->

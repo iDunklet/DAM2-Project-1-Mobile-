@@ -8,7 +8,6 @@
     android:padding="32dp">
 
     <!-- Circulos -->
-
     <View
         android:id="@+id/circle1"
         android:layout_width="@dimen/circle_size"
@@ -26,6 +25,7 @@
         android:layout_centerInParent="false"
         android:translationX="-120dp"
         android:translationY="40dp" />
+
     <View
         android:id="@+id/circle3"
         android:layout_width="@dimen/circle_size"
@@ -34,6 +34,7 @@
         android:layout_centerInParent="false"
         android:translationX="-90dp"
         android:translationY="600dp" />
+
     <View
         android:id="@+id/circle4"
         android:layout_width="@dimen/circle_size"
@@ -49,9 +50,7 @@
         android:layout_height="180dp"
         android:src="@drawable/icono_tasky"
         android:translationX="90dp"
-        android:translationY="30dp"
-        />
-
+        android:translationY="30dp" />
 
     <!-- Contenido principal -->
     <LinearLayout
@@ -61,21 +60,18 @@
         android:gravity="center"
         android:layout_centerInParent="true">
 
-
-
         <!-- Título TASKY con efecto de borde -->
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
-            android:layout_marginTop="90dp"
-            >
+            android:layout_marginTop="90dp">
 
             <!-- Texto exterior (turquesa) -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TASKY"
+                android:text="@string/app_name"
                 android:textSize="42sp"
                 android:textStyle="bold"
                 android:textColor="@color/turquesa" />
@@ -84,17 +80,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TASKY"
+                android:text="@string/app_name"
                 android:textSize="42sp"
                 android:textStyle="bold"
                 android:textColor="@color/oscuro"
                 android:layout_marginTop="4dp"
                 android:layout_marginStart="1dp" />
-
         </RelativeLayout>
 
         <!-- Campo de Usuario -->
-
         <EditText
             android:id="@+id/etUsername"
             android:layout_width="match_parent"
@@ -105,7 +99,7 @@
             android:background="@drawable/edittext_background"
             android:fontFamily="@font/montserrat_regular"
             android:gravity="center"
-            android:hint="Usuario"
+            android:hint="@string/username_hint"
             android:padding="15dp"
             android:textColor="@color/oscuro"
             android:textColorHint="@color/oscuro"
@@ -116,7 +110,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:hint="Contraseña"
+            android:hint="@string/password_hint"
             android:inputType="textPassword"
             android:padding="15dp"
             android:textColor="@color/oscuro"
@@ -126,29 +120,26 @@
             android:textStyle="bold"
             android:background="@drawable/edittext_background"
             android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-            />
-
+            android:layout_marginRight="40dp" />
 
         <!-- Checkbox Recordarme -->
         <CheckBox
             android:id="@+id/cbRemember"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Recordarme"
+            android:text="@string/remember_me"
             android:textColor="@color/naranja"
             android:textSize="14sp"
             android:textStyle="bold"
             android:layout_marginBottom="20dp"
-            android:buttonTint="@color/naranja"
-             />
+            android:buttonTint="@color/naranja" />
 
         <!-- Botón Entrar -->
         <Button
             android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Entrar"
+            android:text="@string/login_button"
             android:textSize="20dp"
             android:textStyle="bold"
             android:backgroundTint="@color/naranja"
@@ -156,9 +147,6 @@
             android:padding="10dp"
             android:elevation="4dp"
             android:layout_marginRight="80dp"
-            android:layout_marginLeft="80dp"
-            />
-
+            android:layout_marginLeft="80dp" />
     </LinearLayout>
-
 </RelativeLayout>

@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mobile">
         <activity
-            android:name=".TarearDetailActivity"
+            android:name=".TasksDetailActivity"
             android:exported="true" />
         <activity
             android:name=".ProjectDetailActivity"

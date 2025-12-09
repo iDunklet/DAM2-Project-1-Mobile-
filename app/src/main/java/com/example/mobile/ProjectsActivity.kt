@@ -15,7 +15,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class ProjectsActivity : AppCompatActivity() {
+class ProjectsActivity : BaseActivity() {
 
     private lateinit var tabRecent: TextView
     private lateinit var tabAll: TextView
