@@ -1,8 +1,8 @@
-package com.example.mobile
+package com.example.mobile.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.AnimationUtils
@@ -10,10 +10,13 @@ import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.mobile.BaseActivity
+import com.example.mobile.R
+import com.example.mobile.classes.Project
+import com.example.mobile.classes.User
 
 class ProjectsActivity : BaseActivity() {
 
@@ -127,7 +130,7 @@ class ProjectsActivity : BaseActivity() {
                 text = "No hay proyectos disponibles"
                 textSize = 16f
                 setTextColor(ContextCompat.getColor(this@ProjectsActivity, android.R.color.darker_gray))
-                gravity = android.view.Gravity.CENTER
+                gravity = Gravity.CENTER
                 setPadding(0, 100, 0, 0)
             }
             container.addView(emptyView)

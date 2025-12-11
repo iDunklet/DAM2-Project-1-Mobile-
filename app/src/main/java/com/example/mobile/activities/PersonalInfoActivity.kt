@@ -1,13 +1,18 @@
-package com.example.mobile
+package com.example.mobile.activities
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.mobile.BaseActivity
+import com.example.mobile.R
+import com.example.mobile.classes.Project
+import com.example.mobile.classes.Task
+import com.example.mobile.classes.User
+import com.example.mobile.helpers.LanguageHelper
 
 class PersonalInfoActivity : BaseActivity() {
 

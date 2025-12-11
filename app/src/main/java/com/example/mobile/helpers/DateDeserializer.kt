@@ -1,9 +1,10 @@
-package com.example.mobile
+package com.example.mobile.helpers
 
+import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
-import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonParseException
+import java.lang.reflect.Type
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -16,7 +17,7 @@ class DateDeserializer : JsonDeserializer<Date> {
 
     override fun deserialize(
         json: JsonElement,
-        typeOfT: java.lang.reflect.Type,
+        typeOfT: Type,
         context: JsonDeserializationContext
     ): Date {
         val value = json.asString

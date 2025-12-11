@@ -12,24 +12,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mobile">
         <activity
-            android:name=".TasksDetailActivity"
+            android:name=".activities.TasksDetailActivity"
             android:exported="true" />
         <activity
-            android:name=".ProjectDetailActivity"
+            android:name=".activities.ProjectDetailActivity"
             android:exported="true" />
         <activity
-            android:name=".PersonalInfoActivity"
+            android:name=".activities.PersonalInfoActivity"
             android:exported="true" />
         <activity
-            android:name=".ProjectsActivity"
-            android:exported="true" />
-
-        <activity
-            android:name=".ProjectChartsActivity"
+            android:name=".activities.ProjectsActivity"
             android:exported="true" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.ProjectChartsActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

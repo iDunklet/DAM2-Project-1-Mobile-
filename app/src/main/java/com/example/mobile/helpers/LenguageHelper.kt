@@ -1,4 +1,4 @@
-package com.example.mobile
+package com.example.mobile.helpers
 
 import android.content.Context
 import java.util.Locale

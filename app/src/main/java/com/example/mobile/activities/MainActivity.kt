@@ -1,4 +1,4 @@
-package com.example.mobile
+package com.example.mobile.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,6 +10,11 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
+import com.example.mobile.BaseActivity
+import com.example.mobile.R
+import com.example.mobile.classes.Project
+import com.example.mobile.classes.User
+import com.example.mobile.helpers.DataManager
 
 class MainActivity : BaseActivity() {
     private lateinit var projects: List<Project>

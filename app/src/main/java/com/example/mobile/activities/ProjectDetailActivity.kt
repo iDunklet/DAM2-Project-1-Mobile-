@@ -1,6 +1,7 @@
-package com.example.mobile
+package com.example.mobile.activities
 
 import android.content.Intent
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -8,9 +9,13 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import android.widget.Button
+import com.example.mobile.BaseActivity
+import com.example.mobile.R
+import com.example.mobile.classes.Project
+import com.example.mobile.classes.Task
+import com.example.mobile.helpers.DataManager
 
 class ProjectDetailActivity : BaseActivity() {
 
@@ -181,14 +186,14 @@ class ProjectDetailActivity : BaseActivity() {
 
         if (position == 0) {
             tabTareas.setTextColor(ContextCompat.getColor(this, R.color.naranja))
-            tabTareas.setTypeface(null, android.graphics.Typeface.BOLD)
+            tabTareas.setTypeface(null, Typeface.BOLD)
             tabResumenes.setTextColor(ContextCompat.getColor(this, R.color.oscuro))
-            tabResumenes.setTypeface(null, android.graphics.Typeface.NORMAL)
+            tabResumenes.setTypeface(null, Typeface.NORMAL)
         } else {
             tabResumenes.setTextColor(ContextCompat.getColor(this, R.color.naranja))
-            tabResumenes.setTypeface(null, android.graphics.Typeface.BOLD)
+            tabResumenes.setTypeface(null, Typeface.BOLD)
             tabTareas.setTextColor(ContextCompat.getColor(this, R.color.oscuro))
-            tabTareas.setTypeface(null, android.graphics.Typeface.NORMAL)
+            tabTareas.setTypeface(null, Typeface.NORMAL)
         }
     }
 

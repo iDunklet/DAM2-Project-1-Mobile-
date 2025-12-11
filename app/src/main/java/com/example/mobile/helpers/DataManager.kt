@@ -1,8 +1,9 @@
-// DataManager.kt
-package com.example.mobile
+package com.example.mobile.helpers
 
 import android.content.Context
 import android.util.Log
+import com.example.mobile.classes.Project
+import com.example.mobile.classes.User
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken

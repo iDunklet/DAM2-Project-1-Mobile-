@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/turquesa_transparente"
-    tools:context=".ProjectDetailActivity">
+    tools:context=".activities.ProjectDetailActivity">
 
     <!-- 1. ENCABEZADO (HEADER) -->
     <FrameLayout

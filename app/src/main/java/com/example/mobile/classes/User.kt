@@ -1,4 +1,4 @@
-package com.example.mobile
+package com.example.mobile.classes
 
 import android.graphics.Bitmap
 import com.google.gson.annotations.SerializedName

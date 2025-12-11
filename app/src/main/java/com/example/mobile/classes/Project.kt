@@ -1,6 +1,8 @@
-package com.example.mobile
+package com.example.mobile.classes
 
 import android.graphics.Bitmap
+import com.example.mobile.classes.Task
+import com.example.mobile.classes.User
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 import java.util.Date

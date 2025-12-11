@@ -1,13 +1,15 @@
-package com.example.mobile
+package com.example.mobile.activities
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.example.mobile.BaseActivity
+import com.example.mobile.R
+import com.example.mobile.classes.Project
+import com.example.mobile.classes.Task
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -70,7 +72,7 @@ class TasksDetailActivity : BaseActivity() {
                 }
                 setResult(RESULT_STATUS_CHANGED, resultIntent)
             } else {
-                setResult(Activity.RESULT_CANCELED)
+                setResult(RESULT_CANCELED)
             }
             finish()
         }

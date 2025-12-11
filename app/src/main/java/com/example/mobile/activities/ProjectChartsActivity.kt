@@ -1,17 +1,18 @@
-package com.example.mobile
+package com.example.mobile.activities
 
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.ScrollView
-import androidx.appcompat.app.AppCompatActivity
+import com.example.mobile.BaseActivity
+import com.example.mobile.R
+import com.example.mobile.classes.Task
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
-import java.util.Date
 
 
 class ProjectChartsActivity: BaseActivity() {
