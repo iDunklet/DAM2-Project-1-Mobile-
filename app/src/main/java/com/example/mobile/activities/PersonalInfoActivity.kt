@@ -1,6 +1,7 @@
 package com.example.mobile.activities
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
@@ -22,6 +23,7 @@ class PersonalInfoActivity : BaseActivity() {
     private lateinit var tvTasksDone: TextView
     private lateinit var tvScore: TextView
     private lateinit var tvTasksPending: TextView
+    private lateinit var ivLanguage: ImageView
 
     private lateinit var user: User
     private lateinit var projects: List<Project>
@@ -39,6 +41,8 @@ class PersonalInfoActivity : BaseActivity() {
         }
 
         loadView()
+        loadSavedIcon()
+
         user = intent.getSerializableExtra("user") as User
         projects = intent.getSerializableExtra("projects") as? ArrayList<Project> ?: emptyList()
 
@@ -62,7 +66,7 @@ class PersonalInfoActivity : BaseActivity() {
         val btnBack = findViewById<ImageView>(R.id.btnBack)
         btnBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
 
-        val ivLanguage = findViewById<ImageView>(R.id.ivLanguage)
+
         ivLanguage.setOnClickListener {
             val idiomas = arrayOf("Español", "Català", "English")
             val icons = intArrayOf(
@@ -75,17 +79,21 @@ class PersonalInfoActivity : BaseActivity() {
                 .setTitle(getString(R.string.select_language))
                 .setItems(idiomas) { _, which ->
                     val newLang = when (which) {
-                        0 -> "es"
-                        1 -> "cat"
-                        2 -> "en"
+                        0 -> "es" //aqui setear el icono a su respectiva bandera //bandera_cat
+                        1 -> "cat" //badnera_es
+                        2 -> "en" //bandera_eua
                         else -> "es"
                     }
-                    // 🔹 Solo guardamos idioma, BaseActivity lo aplicará al recrear
+                    changeIcon(newLang)
+
                     LanguageHelper.saveLanguagePref(this, newLang)
 
-                    ivLanguage.setImageResource(icons[which])
 
-                    recreate()
+                    val intent = Intent(this, MainActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
+
+                    ivLanguage.setImageResource(icons[which])
                 }
                 .show()
         }
@@ -127,5 +135,30 @@ class PersonalInfoActivity : BaseActivity() {
         tvTasksDone = findViewById(R.id.tvTasksDone)
         tvScore = findViewById(R.id.tvScore)
         tvTasksPending = findViewById(R.id.tvTasksPending)
+        ivLanguage = findViewById(R.id.ivLanguage)
     }
+    private fun changeIcon(lang: String) {
+        when (lang) {
+            "es" -> ivLanguage.setImageResource(R.drawable.bandera_es)
+            "cat" -> ivLanguage.setImageResource(R.drawable.bandera_cat)
+            "en" -> ivLanguage.setImageResource(R.drawable.bandera_eua)
+        }
+        saveIconPref(lang)
+    }
+
+    private fun saveIconPref(lang: String) {
+        val prefs = getSharedPreferences("AppSettings", MODE_PRIVATE)
+        prefs.edit().putString("icon_lang", lang).apply()
+    }
+
+    private fun loadSavedIcon() {
+        val prefs = getSharedPreferences("AppSettings", MODE_PRIVATE)
+        val lang = prefs.getString("icon_lang", "es") ?: "es"
+        changeIcon(lang)
+    }
+
+
 }
+
+
+

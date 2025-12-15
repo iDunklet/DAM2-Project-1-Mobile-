@@ -9,11 +9,7 @@
     android:background="#F5F5F5"
     tools:context=".activities.PersonalInfoActivity">
 
-    <!-- CÍRCULO SUPERIOR DERECHA - AHORA DEBAJO DEL RECTÁNGULO -->
-
-    <!-- CÍRCULO CENTRAL DERECHA -->
-
-    <!-- CÍRCULO INFERIOR IZQUIERDA -->
+    <!-- CÍRCULOS DECORATIVOS -->
     <View
         android:id="@+id/circleTopRight"
         android:layout_width="@dimen/circle_size"
@@ -44,11 +40,11 @@
         android:layout_width="@dimen/circle_size"
         android:layout_height="@dimen/circle_size"
         android:background="@drawable/circle_turquesa"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         android:translationX="-60dp"
         android:translationY="60dp"
-        android:alpha="0.75"/>
+        android:alpha="0.75"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <!-- Barra superior -->
     <FrameLayout
@@ -92,10 +88,10 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="#333333"
-        app:layout_constraintTop_toBottomOf="@id/titleBar"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleBar" />
 
     <!-- Icono de perfil -->
     <ImageView
@@ -104,10 +100,10 @@
         android:layout_height="80dp"
         android:src="@drawable/ic_user"
         android:contentDescription="@string/profile_picture"
-        app:layout_constraintTop_toBottomOf="@id/tvGreeting"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvGreeting" />
 
     <!-- Nombre completo -->
     <TextView
@@ -117,10 +113,10 @@
         android:text="@string/full_name"
         android:textSize="18sp"
         android:textColor="#555555"
-        app:layout_constraintTop_toBottomOf="@id/ivProfile"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivProfile" />
 
     <!-- Contenedor de métricas -->
     <LinearLayout
@@ -129,13 +125,13 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@id/tvFullName"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="32dp"
+        android:layout_marginHorizontal="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp"
-        android:layout_marginHorizontal="16dp">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvFullName">
 
-        <!-- Tareas Hechas -->
+        <!-- TAREAS HECHAS -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -143,30 +139,41 @@
             android:orientation="vertical"
             android:gravity="center">
 
-            <ImageView
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:src="@drawable/ic_done"
-                android:contentDescription="@string/tasks_done"/>
+            <FrameLayout
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:background="@drawable/circle_background">
 
-            <TextView
-                android:id="@+id/tvTasksDone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="XX"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="#333333"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tasks_done"
-                android:textSize="14sp"
-                android:textColor="#777777"/>
+                    <TextView
+                        android:id="@+id/tvTasksDone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="XX"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:textColor="#333333"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tasks_done"
+                        android:textSize="14sp"
+                        android:textColor="#555555"
+                        android:gravity="center"
+                        android:layout_marginTop="4dp"/>
+                </LinearLayout>
+
+            </FrameLayout>
         </LinearLayout>
 
-        <!-- Puntuación -->
+        <!-- PUNTUACIÓN -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -174,30 +181,41 @@
             android:orientation="vertical"
             android:gravity="center">
 
-            <ImageView
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:src="@drawable/ic_score"
-                android:contentDescription="@string/score"/>
+            <FrameLayout
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:background="@drawable/circle_background">
 
-            <TextView
-                android:id="@+id/tvScore"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="XX"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="#333333"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/score"
-                android:textSize="14sp"
-                android:textColor="#777777"/>
+                    <TextView
+                        android:id="@+id/tvScore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="XX"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:textColor="#333333"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/score"
+                        android:textSize="14sp"
+                        android:textColor="#555555"
+                        android:gravity="center"
+                        android:layout_marginTop="4dp"/>
+                </LinearLayout>
+
+            </FrameLayout>
         </LinearLayout>
 
-        <!-- Tareas Pendientes -->
+        <!-- TAREAS PENDIENTES -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -205,40 +223,52 @@
             android:orientation="vertical"
             android:gravity="center">
 
-            <ImageView
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:src="@drawable/ic_pending"
-                android:contentDescription="@string/tasks_pending"/>
+            <FrameLayout
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:background="@drawable/circle_background">
 
-            <TextView
-                android:id="@+id/tvTasksPending"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="XX"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="#333333"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tasks_pending"
-                android:textSize="14sp"
-                android:textColor="#777777"/>
+                    <TextView
+                        android:id="@+id/tvTasksPending"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="XX"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:textColor="#333333"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tasks_pending"
+                        android:textSize="14sp"
+                        android:textColor="#555555"
+                        android:gravity="center"
+                        android:layout_marginTop="4dp"/>
+                </LinearLayout>
+
+            </FrameLayout>
         </LinearLayout>
+
     </LinearLayout>
 
     <!-- Icono de idioma -->
     <ImageView
         android:id="@+id/ivLanguage"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:src="@drawable/bandera_es"
         android:contentDescription="@string/lang_spanish"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
