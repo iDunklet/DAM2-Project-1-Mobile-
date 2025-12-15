@@ -39,7 +39,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Proyecto 1"
+                android:text="@string/project_name"
                 android:textColor="@color/oscuro"
                 android:textStyle="bold"
                 android:textSize="22sp" />
@@ -60,7 +60,6 @@
             android:orientation="vertical"
             android:layout_gravity="center_vertical|end"
             android:gravity="center">
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -70,7 +69,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="miembros"
+                android:text="@string/members_right"
                 android:textSize="12sp"
                 android:textColor="@color/black"/>
         </LinearLayout>
@@ -98,7 +97,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tareas"
+                    android:text="@string/tab_tareas_nombre"
                     android:textColor="@color/oscuro"
                     android:textStyle="bold"
                     android:textSize="16sp"
@@ -119,7 +118,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Resumenes"
+                    android:text="@string/tab_summary_name"
                     android:textColor="@color/naranja"
                     android:textSize="16sp"
                     android:layout_centerInParent="true"/>
@@ -182,7 +181,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginBottom="20dp"
-                    android:text="Horas por tareas"
+                    android:text="@string/graphics_zone_tittle_tasksperhour"
                     android:textColor="@color/oscuro"
                     android:textSize="18sp" />
 
@@ -203,7 +202,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginBottom="10dp"
-                    android:text="Estado de Tareas"
+                    android:text="@string/graphics_zone_tittle_taskstatus"
                     android:textColor="@color/oscuro"
                     android:textSize="18sp" />
 
@@ -224,7 +223,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginBottom="10dp"
-                    android:text="Evolución Semanal"
+                    android:text="@string/graphics_zone_tittle_weeklytrend"
                     android:textColor="@color/oscuro"
                     android:textSize="18sp" />
 

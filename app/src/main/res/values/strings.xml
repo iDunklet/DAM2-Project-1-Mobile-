@@ -1,10 +1,12 @@
 <resources>
+    <!--MainActivity/activity_main-->
     <string name="app_name">TASKY</string>
     <string name="username_hint">Usuario</string>
     <string name="password_hint">Contraseña</string>
     <string name="remember_me">Recordarme</string>
     <string name="login_button">Entrar</string>
     <string name="login_error">Usuario o contraseña incorrectos</string>
+    <!--PersonalInfoActivity/activity_personal_info-->
     <string name="select_language">Selecciona idioma</string>
     <string name="back">Volver</string>
     <string name="members">Miembros</string>
@@ -17,6 +19,16 @@
     <string name="lang_spanish">Idioma Español</string>
     <string name="lang_catalan">Idioma Catalán</string>
     <string name="lang_english">Idioma Inglés</string>
+    <!--ProjectsChartsActivity/activity_project_charts-->
+    <string name="project_name">Proyecto 1</string>
+    <string name="members_right">miembros</string>
+    <string name="tab_tareas_nombre">Tareas</string>
+    <string name="tab_summary_name">Resumen</string>
+    <string name="graphics_zone_tittle_tasksperhour">Horas por Tareas</string>
+    <string name="graphics_zone_tittle_taskstatus">Estado Tareas</string>
+    <string name="graphics_zone_tittle_weeklytrend">Evolucion Semanal</string>
+
+
 
 
 

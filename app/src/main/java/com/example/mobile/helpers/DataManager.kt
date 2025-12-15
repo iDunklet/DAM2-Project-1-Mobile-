@@ -2,6 +2,7 @@ package com.example.mobile.helpers
 
 import android.content.Context
 import android.util.Log
+import com.example.mobile.R
 import com.example.mobile.classes.Project
 import com.example.mobile.classes.User
 import com.google.gson.Gson
@@ -28,9 +29,9 @@ class DataManager(private val context: Context) {
         val file = File(context.filesDir, projectsFile)
         if (!file.exists()) {
             Log.d("DataManager", "No existe projects.json, copiando desde raw")
-            //copyFromRaw(R.raw.projects, file)
+            copyFromRaw(R.raw.projects, file)
         }
-        return if (file.exists()) {   // ✅ ahora sí
+        return if (file.exists()) {
             val json = file.readText()
             val type = object : TypeToken<List<Project>>() {}.type
             val projects: List<Project> = gson.fromJson(json, type)
@@ -43,7 +44,7 @@ class DataManager(private val context: Context) {
         val file = File(context.filesDir, usersFile)
         if (!file.exists()) {
             Log.d("DataManager", "No existe users.json, copiando desde raw")
-            //copyFromRaw(R.raw.users, file)
+            copyFromRaw(R.raw.users, file)
         }
         return if (file.exists()) {
             val json = file.readText()
@@ -62,7 +63,7 @@ class DataManager(private val context: Context) {
         Log.d("DataManager", "Proyecto actualizado: ${project.id}")
     }
 
-    /*private fun copyFromRaw(rawResId: Int, targetFile: File) {
+    private fun copyFromRaw(rawResId: Int, targetFile: File) {
         try {
             context.resources.openRawResource(rawResId).use { input ->
                 targetFile.outputStream().use { output ->
@@ -73,5 +74,5 @@ class DataManager(private val context: Context) {
         } catch (e: Exception) {
             Log.e("DataManager", "Error copiando archivo desde raw: ${e.message}")
         }
-    }*/
+    }
 }
