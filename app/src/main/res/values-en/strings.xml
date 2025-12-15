@@ -6,6 +6,7 @@
     <string name="remember_me">Remember me</string>
     <string name="login_button">Login</string>
     <string name="login_error">Incorrect username or password</string>
+
     <!--PersonalInfoActivity/activity_personal_info-->
     <string name="select_language">Select language</string>
     <string name="back">Back</string>
@@ -19,6 +20,7 @@
     <string name="lang_spanish">Spanish Language</string>
     <string name="lang_catalan">Catalan Language</string>
     <string name="lang_english">English Language</string>
+
     <!--ProjectsChartsActivity/activity_project_charts-->
     <string name="project_name">Project 1</string>
     <string name="members_right">members</string>
@@ -27,6 +29,39 @@
     <string name="graphics_zone_tittle_tasksperhour">Tasks per Hour</string>
     <string name="graphics_zone_tittle_taskstatus">Tasks Status</string>
     <string name="graphics_zone_tittle_weeklytrend">Weekly Trend</string>
+
+    <!--ProjectDetailActivity/activity_project_detail-->
+    <string name="pd_title_back">Back</string>
+    <string name="pd_members">members</string>
+    <string name="pd_tab_tasks">Tasks</string>
+    <string name="pd_tab_summaries">Summaries</string>
+    <string name="pd_tasks_pending">--- Pending ------</string>
+    <string name="pd_tasks_in_progress">--- In progress ------</string>
+    <string name="pd_tasks_done">--- Done ------</string>
+
+    <!--ProjectsActivity/activity_projects-->
+    <string name="pa_title_projects">Your Projects</string>
+    <string name="pa_tab_recent">Recent</string>
+    <string name="pa_tab_all">All</string>
+
+    <!--TasksDetailActivity/activity_tasks_detail-->
+    <string name="td_back">Back</string>
+    <string name="td_time">Time</string>
+    <string name="td_task_name">Task name</string>
+    <string name="td_task_description">Task description</string>
+    <string name="td_assigned_to">Assigned to:</string>
+    <string name="td_dates">From: - To: -</string>
+    <string name="td_status_title">Status</string>
+    <string name="td_status_not_started">Not Started</string>
+    <string name="td_status_in_progress">In Progress</string>
+    <string name="td_status_done">Done</string>
+    <string name="td_resume">Resume</string>
+    <string name="td_start">Start</string>
+    <string name="td_terminal">Terminal</string>
+    <string name="td_restart">Restart</string>
+
+
+
 
 
 </resources>

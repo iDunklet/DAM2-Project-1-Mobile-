@@ -1,11 +1,14 @@
 package com.example.mobile.activities
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.ScrollView
+import android.widget.TextView
 import com.example.mobile.BaseActivity
 import com.example.mobile.R
+import com.example.mobile.classes.Project
 import com.example.mobile.classes.Task
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.charts.LineChart
@@ -14,25 +17,43 @@ import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 
-
 class ProjectChartsActivity: BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_project_charts)
 
-        val listaTareas = generarDatosDePrueba()
+        // Recibir el proyecto del intent
+        val proyecto = intent.getSerializableExtra("selected_project") as? Project
 
-        // Intent
-        // val proyecto = intent.getSerializableExtra("extra_project") as? Project
-        // val listaTareas = proyecto?.taskList ?: generarDatosDePrueba()
+        // *** LISTENER PARA TAB TAREAS ***
+        val tabTareas = findViewById<TextView>(R.id.tabTareas)
+        tabTareas.setOnClickListener {
+            // Crear intent para volver a ProjectDetailActivity
+            val intent = Intent(this@ProjectChartsActivity, ProjectDetailActivity::class.java)
+            // Pasar el proyecto de vuelta
+            if (proyecto != null) {
+                intent.putExtra("selected_project", proyecto)
+            }
+            // Iniciar la actividad
+            startActivity(intent)
+            // Opcional: cerrar esta actividad
+            finish()
+        }
+
+        // Usar las tareas reales del proyecto o lista vacía
+        val listaTareas = if (proyecto != null) {
+            ArrayList(proyecto.projectTasks)
+        } else {
+            ArrayList<Task>() // Lista vacía si no hay proyecto
+        }
 
         // Gráfico 1: Barras
         val barChart = findViewById<BarChart>(R.id.barChartHoras)
-        setupBarChart(barChart, listaTareas) // <--- ¡Mira! Le pasamos la lista
+        setupBarChart(barChart, listaTareas)
 
         // Gráfico 2: Pastel
         val pieChart = findViewById<PieChart>(R.id.pieChartEstado)
-        setupPieChart(pieChart, listaTareas) // <--- ¡Mira! Le pasamos la lista
+        setupPieChart(pieChart, listaTareas)
 
         // Gráfico 3: Línea (Este se queda simulado visualmente)
         val lineChart = findViewById<LineChart>(R.id.lineChartProgreso)
@@ -42,36 +63,20 @@ class ProjectChartsActivity: BaseActivity() {
         setupCustomScrollbar()
     }
 
-    // Datos Fantasmas
-
-    private fun generarDatosDePrueba(): ArrayList<Task> {
-        val lista = ArrayList<Task>()
-        // Aquí inventamos tareas con TU estructura 'Task' real
-        lista.add(Task("Diseño UI", "Figma", null, null, null, "Hecha", 5))
-        lista.add(Task("Base Datos", "SQL", null, null, null, "Hecha", 8))
-        lista.add(Task("Login", "Auth", null, null, null, "En Progreso", 12))
-        lista.add(Task("API Rest", "Backend", null, null, null, "En Progreso", 6))
-        lista.add(Task("Testing", "Unitarios", null, null, null, "Pendiente", 4))
-        lista.add(Task("Deploy", "Play Store", null, null, null, "Pendiente", 2))
-        return lista
-    }
-
+    // ... el resto del código se mantiene igual ...
     private fun setupBarChart(chart: BarChart, lista: ArrayList<Task>) {
         val entries = ArrayList<BarEntry>()
         val nombres = ArrayList<String>()
 
-        // BUCLE: Transforma tu lista de tareas en barras
         for (i in lista.indices) {
             val tarea = lista[i]
-            // Sacamos las horas (si es null ponemos 0)
             val horas = tarea.taskTime?.toFloat() ?: 0f
-
             entries.add(BarEntry(i.toFloat(), horas))
             nombres.add(tarea.taskName)
         }
 
         val dataSet = BarDataSet(entries, "Horas invertidas")
-        dataSet.color = Color.parseColor("#1A4349") // Verde Oscuro
+        dataSet.color = Color.parseColor("#1A4349")
         dataSet.valueTextColor = Color.BLACK
         dataSet.valueTextSize = 10f
 
@@ -79,7 +84,6 @@ class ProjectChartsActivity: BaseActivity() {
         barData.barWidth = 0.5f
         chart.data = barData
 
-        // Estilos visuales
         chart.description.isEnabled = false
         chart.setFitBars(true)
         chart.animateY(1500)
@@ -87,7 +91,7 @@ class ProjectChartsActivity: BaseActivity() {
         val xAxis = chart.xAxis
         xAxis.position = XAxis.XAxisPosition.BOTTOM
         xAxis.setDrawGridLines(false)
-        xAxis.valueFormatter = IndexAxisValueFormatter(nombres) // Ponemos nombres reales
+        xAxis.valueFormatter = IndexAxisValueFormatter(nombres)
         xAxis.granularity = 1f
         xAxis.labelRotationAngle = -45f
 
@@ -96,18 +100,15 @@ class ProjectChartsActivity: BaseActivity() {
     }
 
     private fun setupPieChart(chart: PieChart, lista: ArrayList<Task>) {
-        // Contadores
         var pendientes = 0f
         var enProgreso = 0f
         var hechas = 0f
 
-        // BUCLE: Cuenta cuántas hay de cada tipo
         for (tarea in lista) {
-            when (tarea.taskStatus) {
-                "Pendiente" -> pendientes++
-                "En Progreso" -> enProgreso++
-                "Hecha" -> hechas++
-                // Ajusta estos textos si tu compañero usa otros (ej: "TODO")
+            when (tarea.taskStatus?.lowercase()) {
+                "pendiente", "pendientes", "sin empezar" -> pendientes++
+                "en progreso", "en proceso" -> enProgreso++
+                "hecha", "hechas", "hecho", "completada" -> hechas++
             }
         }
 
@@ -116,15 +117,15 @@ class ProjectChartsActivity: BaseActivity() {
 
         if (pendientes > 0) {
             entries.add(PieEntry(pendientes, "Pendientes"))
-            colors.add(Color.parseColor("#FF7043")) // Naranja
+            colors.add(Color.parseColor("#FF7043"))
         }
         if (enProgreso > 0) {
             entries.add(PieEntry(enProgreso, "En Progreso"))
-            colors.add(Color.parseColor("#1A4349")) // Verde
+            colors.add(Color.parseColor("#1A4349"))
         }
         if (hechas > 0) {
             entries.add(PieEntry(hechas, "Hechas"))
-            colors.add(Color.LTGRAY) // Gris
+            colors.add(Color.LTGRAY)
         }
 
         val dataSet = PieDataSet(entries, "")
@@ -144,7 +145,6 @@ class ProjectChartsActivity: BaseActivity() {
     }
 
     private fun setupLineChart(chart: LineChart) {
-        // Mantenemos datos fijos aquí porque 'Task' no tiene histórico diario
         val entries = ArrayList<Entry>()
         entries.add(Entry(0f, 1f))
         entries.add(Entry(1f, 3f))
@@ -169,7 +169,6 @@ class ProjectChartsActivity: BaseActivity() {
         chart.invalidate()
     }
 
-    // Barra de scroll
     private fun setupCustomScrollbar() {
         val scrollView = findViewById<ScrollView>(R.id.mainScrollView)
         val indicador = findViewById<View>(R.id.customScrollIndicator)

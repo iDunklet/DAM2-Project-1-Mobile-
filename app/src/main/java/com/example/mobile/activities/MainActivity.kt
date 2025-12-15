@@ -3,8 +3,6 @@ package com.example.mobile.activities
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.view.animation.AnimationUtils
 import androidx.activity.enableEdgeToEdge
 import android.widget.Button
 import android.widget.CheckBox
@@ -15,6 +13,7 @@ import com.example.mobile.R
 import com.example.mobile.classes.Project
 import com.example.mobile.classes.User
 import com.example.mobile.helpers.DataManager
+import com.example.mobile.helpers.UIAnimations
 
 class MainActivity : BaseActivity() {
     private lateinit var projects: List<Project>
@@ -27,7 +26,8 @@ class MainActivity : BaseActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-        startAnimations()
+        UIAnimations(this).startFloatingCircles()
+
         dataManager = DataManager(this)
 
         projects = dataManager.loadProjects()
@@ -79,12 +79,7 @@ class MainActivity : BaseActivity() {
         Log.d("MainActivity", "Datos guardados en onPause")
     }
 
-    private fun startAnimations() {
-        val floatAnimation = AnimationUtils.loadAnimation(this, R.anim.float_animation)
-        findViewById<View>(R.id.circle1).startAnimation(floatAnimation)
-        findViewById<View>(R.id.circle2).startAnimation(floatAnimation)
-        findViewById<View>(R.id.circle3).startAnimation(floatAnimation)
-    }
+
 
     fun checkUser(): User? {
         val inputUsername = findViewById<EditText>(R.id.etUsername).text.toString()

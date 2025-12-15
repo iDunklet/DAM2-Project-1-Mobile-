@@ -17,6 +17,7 @@ import com.example.mobile.BaseActivity
 import com.example.mobile.R
 import com.example.mobile.classes.Project
 import com.example.mobile.classes.User
+import com.example.mobile.helpers.UIAnimations
 
 class ProjectsActivity : BaseActivity() {
 
@@ -34,7 +35,7 @@ class ProjectsActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_projects)
-
+        UIAnimations(this).startFloatingCircles()
         initData()
         initViews()
         initListeners()

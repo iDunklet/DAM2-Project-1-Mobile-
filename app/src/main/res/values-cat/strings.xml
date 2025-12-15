@@ -6,6 +6,7 @@
     <string name="remember_me">Recorda\'m</string>
     <string name="login_button">Entra</string>
     <string name="login_error">Usuari o contrasenya incorrectes</string>
+
     <!--PersonalInfoActivity/activity_personal_info-->
     <string name="select_language">Selecciona idioma</string>
     <string name="back">Tornar</string>
@@ -19,6 +20,7 @@
     <string name="lang_spanish">Idioma Espanyol</string>
     <string name="lang_catalan">Idioma Català</string>
     <string name="lang_english">Idioma Anglès</string>
+
     <!--ProjectsChartsActivity/activity_project_charts-->
     <string name="project_name">Projecte 1</string>
     <string name="members_right">membres</string>
@@ -27,6 +29,36 @@
     <string name="graphics_zone_tittle_tasksperhour">Hores per Tasques</string>
     <string name="graphics_zone_tittle_taskstatus">Estat de les Tasques</string>
     <string name="graphics_zone_tittle_weeklytrend">- Evolució Setmanal</string>
+
+    <!--ProjectDetailActivity/activity_project_detail-->
+    <string name="pd_title_back">Tornar</string>
+    <string name="pd_members">membres</string>
+    <string name="pd_tab_tasks">Tasques</string>
+    <string name="pd_tab_summaries">Resums</string>
+    <string name="pd_tasks_pending">--- Pendents ------</string>
+    <string name="pd_tasks_in_progress">--- En progrés ------</string>
+    <string name="pd_tasks_done">--- Fetes ------</string>
+
+    <!--ProjectsActivity/activity_projects-->
+    <string name="pa_title_projects">Els teus projectes</string>
+    <string name="pa_tab_recent">Recents</string>
+    <string name="pa_tab_all">Tots</string>
+
+    <!--TasksDetailActivity/activity_tasks_detail-->
+    <string name="td_back">Tornar</string>
+    <string name="td_time">Temps</string>
+    <string name="td_task_name">Nom de la tasca</string>
+    <string name="td_task_description">Descripció de la tasca</string>
+    <string name="td_assigned_to">Assignada a:</string>
+    <string name="td_dates">Des de: - Fins a: -</string>
+    <string name="td_status_title">Estat</string>
+    <string name="td_status_not_started">Sense començar</string>
+    <string name="td_status_in_progress">En progrés</string>
+    <string name="td_status_done">Feta</string>
+    <string name="td_resume">Reprendre</string>
+    <string name="td_start">Començar</string>
+    <string name="td_terminal">Terminal</string>
+    <string name="td_restart">Reiniciar</string>
 
 
 </resources>

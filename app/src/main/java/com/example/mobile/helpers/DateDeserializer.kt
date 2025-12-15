@@ -1,5 +1,6 @@
 package com.example.mobile.helpers
 
+import android.util.Log
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
@@ -26,7 +27,7 @@ class DateDeserializer : JsonDeserializer<Date> {
                 val parsed = format.parse(value)
                 if (parsed != null) return parsed
             } catch (_: Exception) {
-                // sigue probando con el siguiente formato
+                Log.d("DataManager", "error")
             }
         }
         throw JsonParseException("Error parseando la fecha: $value")

@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".activities.TasksDetailActivity">
+
     <View
         android:id="@+id/circle1"
         android:layout_width="@dimen/circle_size"
@@ -33,7 +34,6 @@
         android:translationX="-120dp"
         android:translationY="600dp" />
 
-
     <FrameLayout
         android:id="@+id/titleBar"
         android:layout_width="match_parent"
@@ -57,7 +57,7 @@
             android:id="@+id/txtTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Volver"
+            android:text="@string/td_back"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:textSize="20sp"
@@ -70,11 +70,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
             android:layout_marginEnd="20dp"
-            android:text="Tiempo"
+            android:text="@string/td_time"
             android:textColor="@color/white"
             android:textSize="20sp" />
     </FrameLayout>
-
 
     <ScrollView
         android:layout_width="match_parent"
@@ -87,11 +86,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <TextView
                 android:id="@+id/txtTaskName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nombre de la tarea"
+                android:text="@string/td_task_name"
                 android:textSize="22sp"
                 android:textStyle="bold"
                 android:textColor="@color/oscuro"
@@ -101,7 +101,7 @@
                 android:id="@+id/txtTaskDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Descripción de la tarea"
+                android:text="@string/td_task_description"
                 android:textSize="20sp"
                 android:textColor="@color/oscuro"
                 android:layout_marginBottom="16dp" />
@@ -110,7 +110,7 @@
                 android:id="@+id/txtTaskUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Asignado a: "
+                android:text="@string/td_assigned_to"
                 android:textSize="16sp"
                 android:textColor="@color/oscuro"
                 android:layout_marginBottom="12dp" />
@@ -119,10 +119,11 @@
                 android:id="@+id/txtTaskDates"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Desde: - Hasta: -"
+                android:text="@string/td_dates"
                 android:textSize="16sp"
                 android:textColor="@color/oscuro"
                 android:layout_marginBottom="12dp" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
@@ -135,91 +136,98 @@
                 android:layout_marginTop="30dp"
                 android:background="@drawable/rectanglestatus"
                 android:padding="20dp">
+
                 <LinearLayout
                     android:id="@+id/txtStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_marginLeft="15dp">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Status"
+                        android:text="@string/td_status_title"
                         android:textStyle="bold"
                         android:textSize="20sp"
                         android:layout_marginLeft="15dp"/>
+
                     <View
                         android:layout_width="100dp"
                         android:layout_height="3dp"
                         android:background="@color/oscuro"
                         android:layout_marginTop="10dp"/>
+
                     <TextView
                         android:id="@+id/txtSinEmpezar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Sin Empezar"
+                        android:text="@string/td_status_not_started"
                         android:textSize="20sp"
                         android:layout_marginTop="10dp"/>
+
                     <TextView
                         android:id="@+id/txtEnProgreso"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="En Progreso"
+                        android:text="@string/td_status_in_progress"
                         android:textSize="20sp"
                         android:layout_marginTop="10dp"/>
+
                     <TextView
                         android:id="@+id/txtHecho"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Hecho"
+                        android:text="@string/td_status_done"
                         android:textSize="20sp"
                         android:layout_marginTop="10dp"/>
                 </LinearLayout>
+
                 <Button
                     android:id="@+id/btnReanudar"
                     android:layout_width="@dimen/botonWidth_tarea"
                     android:layout_height="@dimen/botonheight_tarea"
                     android:layout_gravity="end"
-                    android:text="Reanudar"
+                    android:text="@string/td_resume"
                     android:backgroundTint="@color/amarillo"
                     android:textSize="20sp"
                     android:textColor="@color/Blanco"
                     android:layout_marginRight="20dp"/>
+
                 <Button
                     android:id="@+id/btnEmpezar"
                     android:layout_width="@dimen/botonWidth_tarea"
                     android:layout_height="@dimen/botonheight_tarea"
                     android:layout_gravity="end|center_vertical"
-                    android:text="Empezar"
+                    android:text="@string/td_start"
                     android:backgroundTint="@color/oscuro"
                     android:textColor="@color/Blanco"
                     android:textSize="20sp"
-                    android:layout_marginRight="20dp"
-                    />
+                    android:layout_marginRight="20dp"/>
+
                 <Button
                     android:id="@+id/btnTerminal"
                     android:layout_width="@dimen/botonWidth_tarea"
                     android:layout_height="@dimen/botonheight_tarea"
                     android:layout_gravity="end|bottom"
-                    android:text="Terminal"
+                    android:text="@string/td_terminal"
                     android:backgroundTint="@color/naranja"
                     android:textSize="20sp"
                     android:textColor="@color/Blanco"
-                    android:layout_marginRight="20dp"
-                    />
-
+                    android:layout_marginRight="20dp"/>
 
             </FrameLayout>
+
             <Button
                 android:id="@+id/btnReiniciar"
                 android:layout_width="@dimen/botonWidth_tarea"
                 android:layout_height="@dimen/botonheight_tarea"
                 android:layout_gravity="center|bottom"
-                android:text="Reiniciar"
+                android:text="@string/td_restart"
                 android:backgroundTint="@color/turquesa"
                 android:textSize="20sp"
-                android:textColor="@color/white"
-                />
+                android:textColor="@color/white"/>
         </LinearLayout>
     </ScrollView>
+
 </RelativeLayout>

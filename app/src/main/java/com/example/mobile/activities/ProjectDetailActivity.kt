@@ -16,6 +16,10 @@ import com.example.mobile.R
 import com.example.mobile.classes.Project
 import com.example.mobile.classes.Task
 import com.example.mobile.helpers.DataManager
+import com.example.mobile.helpers.UIAnimations
+
+// ¡ELIMINAR ESTA LÍNEA! Está causando conflicto con la función equals() estándar
+// private fun String.equals(other: String, ignoreCase: Any, bool: Boolean) {}
 
 class ProjectDetailActivity : BaseActivity() {
 
@@ -41,7 +45,7 @@ class ProjectDetailActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_project_detail)
-
+        UIAnimations(this).startFloatingCircles()
 
         dataManager = DataManager(this)
 
@@ -69,7 +73,12 @@ class ProjectDetailActivity : BaseActivity() {
         }
 
         tabTareas.setOnClickListener { selectTab(0) }
-        tabResumenes.setOnClickListener { selectTab(1) }
+        // CAMBIO 1: Modificar el listener de tabResumenes
+        tabResumenes.setOnClickListener {
+            val intent = Intent(this@ProjectDetailActivity, ProjectChartsActivity::class.java)
+            intent.putExtra("selected_project", selectedProject) // Cambiar a "selected_project" para consistencia
+            startActivity(intent)
+        }
 
         selectTab(0)
 
@@ -80,19 +89,15 @@ class ProjectDetailActivity : BaseActivity() {
     private fun loadProjectData() {
         val savedProjects = dataManager.loadProjects()
 
-
         val projectFromIntent = intent.getSerializableExtra("selected_project") as? Project
         projectFromIntent?.let { intentProject ->
             if (savedProjects.isNotEmpty()) {
-
                 val savedProject = savedProjects.find { it.id == intentProject.id }
                 selectedProject = savedProject ?: intentProject
             } else {
-
                 selectedProject = intentProject
             }
         } ?: run {
-
             if (savedProjects.isNotEmpty()) {
                 selectedProject = savedProjects.first()
             } else {
@@ -105,7 +110,6 @@ class ProjectDetailActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
-
         loadAllTasks()
     }
 
@@ -117,7 +121,6 @@ class ProjectDetailActivity : BaseActivity() {
 
         if (requestCode == REQUEST_CODE_TASK_DETAIL) {
             if (resultCode == TasksDetailActivity.RESULT_STATUS_CHANGED) {
-
                 val taskIndex = data?.getIntExtra(TasksDetailActivity.EXTRA_TASK_INDEX, -1) ?: -1
                 val newStatus = data?.getStringExtra(TasksDetailActivity.EXTRA_NEW_STATUS)
                 val oldStatus = data?.getStringExtra(TasksDetailActivity.EXTRA_OLD_STATUS)
@@ -127,11 +130,8 @@ class ProjectDetailActivity : BaseActivity() {
                 println("DEBUG: New status: $newStatus")
                 println("DEBUG: Project tasks size: ${selectedProject.projectTasks.size}")
 
-
                 if (taskIndex != -1 && newStatus != null && taskIndex < selectedProject.projectTasks.size) {
-
                     selectedProject.projectTasks[taskIndex].taskStatus = newStatus
-
 
                     println("DEBUG: Updated task status in project: ${selectedProject.projectTasks[taskIndex].taskStatus}")
                     println("DEBUG: Task name: ${selectedProject.projectTasks[taskIndex].taskName}")
@@ -143,7 +143,6 @@ class ProjectDetailActivity : BaseActivity() {
                         Toast.LENGTH_SHORT).show()
 
                     saveProjectChanges()
-
                     loadAllTasks()
                 } else {
                     println("DEBUG: Invalid task index or new status")
@@ -151,15 +150,14 @@ class ProjectDetailActivity : BaseActivity() {
                 }
             } else {
                 println("DEBUG: Result code not RESULT_STATUS_CHANGED: $resultCode")
-
             }
         }
     }
+
     private fun loadAllTasks() {
         clearTaskViews(pendientesLayout)
         clearTaskViews(progresoLayout)
         clearTaskViews(hechasLayout)
-
 
         selectedProject.projectTasks.forEach { task ->
             addTaskToLayout(task)
@@ -184,21 +182,14 @@ class ProjectDetailActivity : BaseActivity() {
             .setDuration(200)
             .start()
 
-        if (position == 0) {
-            tabTareas.setTextColor(ContextCompat.getColor(this, R.color.naranja))
-            tabTareas.setTypeface(null, Typeface.BOLD)
-            tabResumenes.setTextColor(ContextCompat.getColor(this, R.color.oscuro))
-            tabResumenes.setTypeface(null, Typeface.NORMAL)
-        } else {
-            tabResumenes.setTextColor(ContextCompat.getColor(this, R.color.naranja))
-            tabResumenes.setTypeface(null, Typeface.BOLD)
-            tabTareas.setTextColor(ContextCompat.getColor(this, R.color.oscuro))
-            tabTareas.setTypeface(null, Typeface.NORMAL)
-        }
+        // SOLO para el tab 0 (Tareas)
+        tabTareas.setTextColor(ContextCompat.getColor(this, R.color.naranja))
+        tabTareas.setTypeface(null, Typeface.BOLD)
+        tabResumenes.setTextColor(ContextCompat.getColor(this, R.color.oscuro))
+        tabResumenes.setTypeface(null, Typeface.NORMAL)
     }
 
     private fun saveProjectChanges() {
-
         dataManager.saveProjectChanges(selectedProject)
 
         val sharedPref = getSharedPreferences("project_data", MODE_PRIVATE)
@@ -210,21 +201,20 @@ class ProjectDetailActivity : BaseActivity() {
     }
 
     private fun addTaskToLayout(task: Task) {
-
         val (layoutRes, parentLayout) = when {
-            task.taskStatus.equals("pendiente", ignoreCase = true) ||
-                    task.taskStatus.equals("pendientes", ignoreCase = true) ||
-                    task.taskStatus.equals("sin empezar", ignoreCase = true) -> {
+            task.taskStatus?.equals("pendiente", ignoreCase = true) == true ||
+                    task.taskStatus?.equals("pendientes", ignoreCase = true) == true ||
+                    task.taskStatus?.equals("sin empezar", ignoreCase = true) == true -> {
                 R.layout.to_do_tasks to pendientesLayout
             }
-            task.taskStatus.equals("en progreso", ignoreCase = true) ||
-                    task.taskStatus.equals("en proceso", ignoreCase = true) -> {
+            task.taskStatus?.equals("en progreso", ignoreCase = true) == true ||
+                    task.taskStatus?.equals("en proceso", ignoreCase = true) == true -> { // CORREGIDO: faltaba "="
                 R.layout.in_progress_taks to progresoLayout
             }
-            task.taskStatus.equals("hecha", ignoreCase = true) ||
-                    task.taskStatus.equals("hechas", ignoreCase = true) ||
-                    task.taskStatus.equals("hecho", ignoreCase = true) ||
-                    task.taskStatus.equals("completada", ignoreCase = true) -> {
+            task.taskStatus?.equals("hecha", ignoreCase = true) == true ||
+                    task.taskStatus?.equals("hechas", ignoreCase = true) == true ||
+                    task.taskStatus?.equals("hecho", ignoreCase = true) == true ||
+                    task.taskStatus?.equals("completada", ignoreCase = true) == true -> {
                 R.layout.finished_tasks to hechasLayout
             }
             else -> {
@@ -240,33 +230,30 @@ class ProjectDetailActivity : BaseActivity() {
         val btnReiniciar = taskView.findViewById<Button>(R.id.btnReiniciar)
 
         if (btnEmpezar != null) {
-
             when {
-                task.taskStatus.equals("hecha", ignoreCase = true) ||
-                        task.taskStatus.equals("hechas", ignoreCase = true) ||
-                        task.taskStatus.equals("hecho", ignoreCase = true) ||
-                        task.taskStatus.equals("completada", ignoreCase = true) -> {
+                task.taskStatus?.equals("hecha", ignoreCase = true) == true ||
+                        task.taskStatus?.equals("hechas", ignoreCase = true) == true ||
+                        task.taskStatus?.equals("hecho", ignoreCase = true) == true ||
+                        task.taskStatus?.equals("completada", ignoreCase = true) == true -> {
                     btnEmpezar.visibility = View.GONE
                     if (btnReiniciar != null) {
                         btnReiniciar.visibility = View.VISIBLE
                         btnReiniciar.text = "Reiniciar"
                         btnReiniciar.setOnClickListener {
-
                             task.taskStatus = "Pendiente"
                             saveProjectChanges()
                             loadAllTasks()
                         }
                     }
                 }
-                task.taskStatus.equals("en progreso", ignoreCase = true) ||
-                        task.taskStatus.equals("en proceso", ignoreCase = true) -> {
+                task.taskStatus?.equals("en progreso", ignoreCase = true) == true ||
+                        task.taskStatus?.equals("en proceso", ignoreCase = true) == true -> {
                     btnEmpezar.text = "Terminar"
                     btnEmpezar.visibility = View.VISIBLE
                     if (btnReiniciar != null) {
                         btnReiniciar.visibility = View.VISIBLE
                         btnReiniciar.text = "Volver a Pendiente"
                         btnReiniciar.setOnClickListener {
-
                             task.taskStatus = "Pendiente"
                             saveProjectChanges()
                             loadAllTasks()
@@ -274,7 +261,6 @@ class ProjectDetailActivity : BaseActivity() {
                     }
 
                     btnEmpezar.setOnClickListener {
-
                         task.taskStatus = "hecha"
                         saveProjectChanges()
                         loadAllTasks()
@@ -287,7 +273,6 @@ class ProjectDetailActivity : BaseActivity() {
                         btnReiniciar.visibility = View.GONE
                     }
                     btnEmpezar.setOnClickListener {
-
                         task.taskStatus = "en progreso"
                         saveProjectChanges()
                         loadAllTasks()
@@ -295,7 +280,6 @@ class ProjectDetailActivity : BaseActivity() {
                 }
             }
         }
-
 
         taskView.setOnClickListener {
             val intent = Intent(this, TasksDetailActivity::class.java)
@@ -309,4 +293,3 @@ class ProjectDetailActivity : BaseActivity() {
         parentLayout.addView(taskView)
     }
 }
-//

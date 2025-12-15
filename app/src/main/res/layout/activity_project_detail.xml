@@ -34,7 +34,6 @@
         android:translationX="-120dp"
         android:translationY="600dp" />
 
-
     <FrameLayout
         android:id="@+id/titleBar"
         android:layout_width="match_parent"
@@ -58,14 +57,12 @@
             android:id="@+id/txtTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Volver"
+            android:text="@string/pd_title_back"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:textSize="20sp"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="56dp" />
-
-
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -74,11 +71,12 @@
             android:gravity="center_vertical"
             android:layout_gravity="center_vertical|end"
             android:layout_marginEnd="40dp">
+
             <TextView
                 android:id="@+id/txtMembers"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="miembros"
+                android:text="@string/pd_members"
                 android:textColor="@color/oscuro"
                 android:textSize="18sp"/>
         </LinearLayout>
@@ -100,7 +98,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Tareas"
+            android:text="@string/pd_tab_tasks"
             android:textColor="@color/oscuro"
             android:textSize="20dp"
             android:textStyle="bold" />
@@ -111,11 +109,12 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Resumenes"
+            android:text="@string/pd_tab_summaries"
             android:textSize="20dp"
             android:textColor="@color/oscuro"
             android:textStyle="normal" />
     </LinearLayout>
+
     <View
         android:id="@+id/indicator"
         android:layout_width="0dp"
@@ -132,8 +131,7 @@
         android:layout_alignParentBottom="true"
         android:fillViewport="true">
 
-
-    <LinearLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -150,7 +148,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
-                    android:text="--- Pendientes ------"
+                    android:text="@string/pd_tasks_pending"
                     android:textColor="@color/oscuro"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -166,7 +164,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="--- En progreso ------"
+                    android:text="@string/pd_tasks_in_progress"
                     android:textColor="@color/oscuro"
                     android:textStyle="bold"
                     android:textSize="18sp"
@@ -184,7 +182,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="--- Hechas ------"
+                    android:text="@string/pd_tasks_done"
                     android:textColor="@color/oscuro"
                     android:textStyle="bold"
                     android:textSize="18sp"
@@ -195,4 +193,3 @@
     </ScrollView>
 
 </RelativeLayout>
-

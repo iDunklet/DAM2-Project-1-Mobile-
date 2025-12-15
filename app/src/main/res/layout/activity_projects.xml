@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".activities.ProjectsActivity">
 
-    <!-- Rectángulo turquesa en la parte superior -->
     <View
         android:id="@+id/headerBackground"
         android:layout_width="match_parent"
@@ -33,7 +32,7 @@
             android:id="@+id/titleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tus Proyectos"
+            android:text="@string/pa_title_projects"
             android:textColor="@android:color/white"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -49,7 +48,6 @@
 
     </LinearLayout>
 
-    <!-- Contenedor para las pestañas/opciones -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -69,7 +67,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Recent"
+                android:text="@string/pa_tab_recent"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:gravity="center"
@@ -82,7 +80,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="All"
+                android:text="@string/pa_tab_all"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:gravity="center"
@@ -92,7 +90,6 @@
 
         </LinearLayout>
 
-        <!-- Orange indicator bar -->
         <View
             android:id="@+id/indicator"
             android:layout_width="0dp"
@@ -103,7 +100,6 @@
 
     </RelativeLayout>
 
-    <!-- Círculos decorativos -->
     <View
         android:id="@+id/circle1"
         android:layout_width="@dimen/circle_size"
@@ -131,7 +127,6 @@
         android:translationX="260dp"
         android:translationY="600dp" />
 
-    <!-- SCROLLVIEW QUE ENVUELVE EL CONTENEDOR PARA HACERLO SCROLLABLE -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -139,7 +134,6 @@
         android:layout_marginTop="75dp"
         android:fillViewport="true">
 
-        <!-- CONTENEDOR SIMPLIFICADO - REEMPLAZA EL RECYCLERVIEW -->
         <LinearLayout
             android:id="@+id/container"
             android:layout_width="match_parent"

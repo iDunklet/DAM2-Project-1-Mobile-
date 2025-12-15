@@ -9,6 +9,47 @@
     android:background="#F5F5F5"
     tools:context=".activities.PersonalInfoActivity">
 
+    <!-- CÍRCULO SUPERIOR DERECHA - AHORA DEBAJO DEL RECTÁNGULO -->
+
+    <!-- CÍRCULO CENTRAL DERECHA -->
+
+    <!-- CÍRCULO INFERIOR IZQUIERDA -->
+    <View
+        android:id="@+id/circleTopRight"
+        android:layout_width="@dimen/circle_size"
+        android:layout_height="@dimen/circle_size"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="300dp"
+        android:alpha="0.9"
+        android:background="@drawable/circle_turquesa"
+        android:translationX="40dp"
+        android:translationY="-20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleBar" />
+
+    <View
+        android:id="@+id/circleMiddleRight"
+        android:layout_width="@dimen/circle_size"
+        android:layout_height="@dimen/circle_size"
+        android:layout_marginTop="156dp"
+        android:alpha="0.65"
+        android:background="@drawable/circle_turquesa"
+        android:translationX="60dp"
+        android:translationY="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/metricsContainer" />
+
+    <View
+        android:id="@+id/circleBottomLeft"
+        android:layout_width="@dimen/circle_size"
+        android:layout_height="@dimen/circle_size"
+        android:background="@drawable/circle_turquesa"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:translationX="-60dp"
+        android:translationY="60dp"
+        android:alpha="0.75"/>
+
     <!-- Barra superior -->
     <FrameLayout
         android:id="@+id/titleBar"
@@ -40,22 +81,6 @@
             android:layout_gravity="center_vertical"
             android:layout_marginStart="56dp" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_gravity="center_vertical|end"
-            android:layout_marginEnd="40dp">
-
-            <TextView
-                android:id="@+id/txtMembers"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/members"
-                android:textColor="@color/oscuro"
-                android:textSize="18sp"/>
-        </LinearLayout>
     </FrameLayout>
 
     <!-- Saludo -->
@@ -215,4 +240,5 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

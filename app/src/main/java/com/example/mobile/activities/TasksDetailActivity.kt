@@ -10,6 +10,7 @@ import com.example.mobile.BaseActivity
 import com.example.mobile.R
 import com.example.mobile.classes.Project
 import com.example.mobile.classes.Task
+import com.example.mobile.helpers.UIAnimations
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -41,6 +42,7 @@ class TasksDetailActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tasks_detail)
+        UIAnimations(this).startFloatingCircles()
 
         txtTime = findViewById(R.id.txtTiempo)
         txtEnProceso = findViewById(R.id.txtEnProgreso)

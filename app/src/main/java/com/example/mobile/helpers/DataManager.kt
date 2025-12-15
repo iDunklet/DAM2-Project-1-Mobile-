@@ -19,11 +19,7 @@ class DataManager(private val context: Context) {
     private val projectsFile = "projects.json"
     private val usersFile = "users.json"
 
-    fun saveProjects(projects: List<Project>) {
-        val json = gson.toJson(projects)
-        File(context.filesDir, projectsFile).writeText(json)
-        Log.d("DataManager", "Proyectos guardados: ${projects.size}")
-    }
+
 
     fun loadProjects(): List<Project> {
         val file = File(context.filesDir, projectsFile)
@@ -55,12 +51,19 @@ class DataManager(private val context: Context) {
         } else emptyList()
     }
 
+    //save at projectDetail
     fun saveProjectChanges(project: Project) {
         val allProjects = loadProjects().toMutableList()
         val index = allProjects.indexOfFirst { it.id == project.id }
         if (index != -1) allProjects[index] = project else allProjects.add(project)
         saveProjects(allProjects)
         Log.d("DataManager", "Proyecto actualizado: ${project.id}")
+    }
+    //save at pause
+    fun saveProjects(projects: List<Project>) {
+        val json = gson.toJson(projects)
+        File(context.filesDir, projectsFile).writeText(json)
+        Log.d("DataManager", "Proyectos guardados: ${projects.size}")
     }
 
     private fun copyFromRaw(rawResId: Int, targetFile: File) {

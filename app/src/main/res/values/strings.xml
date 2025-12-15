@@ -6,6 +6,7 @@
     <string name="remember_me">Recordarme</string>
     <string name="login_button">Entrar</string>
     <string name="login_error">Usuario o contraseña incorrectos</string>
+
     <!--PersonalInfoActivity/activity_personal_info-->
     <string name="select_language">Selecciona idioma</string>
     <string name="back">Volver</string>
@@ -19,6 +20,7 @@
     <string name="lang_spanish">Idioma Español</string>
     <string name="lang_catalan">Idioma Catalán</string>
     <string name="lang_english">Idioma Inglés</string>
+
     <!--ProjectsChartsActivity/activity_project_charts-->
     <string name="project_name">Proyecto 1</string>
     <string name="members_right">miembros</string>
@@ -27,6 +29,38 @@
     <string name="graphics_zone_tittle_tasksperhour">Horas por Tareas</string>
     <string name="graphics_zone_tittle_taskstatus">Estado Tareas</string>
     <string name="graphics_zone_tittle_weeklytrend">Evolucion Semanal</string>
+
+    <!--ProjectDetailActivity/activity_project_detail-->
+    <string name="pd_title_back">Volver</string>
+    <string name="pd_members">miembros</string>
+    <string name="pd_tab_tasks">Tareas</string>
+    <string name="pd_tab_summaries">Resumenes</string>
+    <string name="pd_tasks_pending">--- Pendientes ------</string>
+    <string name="pd_tasks_in_progress">--- En progreso ------</string>
+    <string name="pd_tasks_done">--- Hechas ------</string>
+
+    <!--ProjectsActivity/activity_projects-->
+    <string name="pa_title_projects">Tus Proyectos</string>
+    <string name="pa_tab_recent">Recientes</string>
+    <string name="pa_tab_all">Todos</string>
+
+    <!--TasksDetailActivity/activity_tasks_detail-->
+    <string name="td_back">Volver</string>
+    <string name="td_time">Tiempo</string>
+    <string name="td_task_name">Nombre de la tarea</string>
+    <string name="td_task_description">Descripción de la tarea</string>
+    <string name="td_assigned_to">Asignado a:</string>
+    <string name="td_dates">Desde: - Hasta: -</string>
+    <string name="td_status_title">Status</string>
+    <string name="td_status_not_started">Sin Empezar</string>
+    <string name="td_status_in_progress">En Progreso</string>
+    <string name="td_status_done">Hecho</string>
+    <string name="td_resume">Reanudar</string>
+    <string name="td_start">Empezar</string>
+    <string name="td_terminal">Terminal</string>
+    <string name="td_restart">Reiniciar</string>
+
+
 
 
 
