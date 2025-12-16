@@ -11,25 +11,60 @@ import java.util.Date
 import java.util.Locale
 
 class DateDeserializer : JsonDeserializer<Date> {
-    private val formats = listOf(
+
+    // ---------------------------------------------------------
+    //  Configuración de formatos de fecha
+    // ---------------------------------------------------------
+    private val dateFormats = listOf(
         SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()), // ISO
         SimpleDateFormat("MMM dd, yyyy hh:mm:ss a", Locale.ENGLISH)     // Jun 15, 2024 12:00:00 AM
     )
 
+    // ---------------------------------------------------------
+    //  Método principal de deserialización
+    // ---------------------------------------------------------
     override fun deserialize(
         json: JsonElement,
         typeOfT: Type,
         context: JsonDeserializationContext
     ): Date {
-        val value = json.asString
-        for (format in formats) {
-            try {
-                val parsed = format.parse(value)
-                if (parsed != null) return parsed
-            } catch (_: Exception) {
-                Log.d("DataManager", "error")
-            }
+        val dateString = json.asString
+        return parseDate(dateString)
+    }
+
+    // ---------------------------------------------------------
+    //  Lógica de parseo de fecha
+    // ---------------------------------------------------------
+    private fun parseDate(dateString: String): Date {
+        val parsedDate = tryParseWithFormats(dateString)
+        return parsedDate ?: throwParseException(dateString)
+    }
+
+    private fun tryParseWithFormats(dateString: String): Date? {
+        for (format in dateFormats) {
+            val parsedDate = tryParseWithFormat(format, dateString)
+            if (parsedDate != null) return parsedDate
         }
-        throw JsonParseException("Error parseando la fecha: $value")
+        return null
+    }
+
+    private fun tryParseWithFormat(format: SimpleDateFormat, dateString: String): Date? {
+        return try {
+            format.parse(dateString)
+        } catch (exception: Exception) {
+            logParseError(dateString, exception)
+            null
+        }
+    }
+
+    // ---------------------------------------------------------
+    //  Manejo de errores
+    // ---------------------------------------------------------
+    private fun throwParseException(dateString: String): Nothing {
+        throw JsonParseException("Error parseando la fecha: $dateString")
+    }
+
+    private fun logParseError(dateString: String, exception: Exception) {
+        Log.d("DataManager", "Error parseando fecha: $dateString")
     }
 }
