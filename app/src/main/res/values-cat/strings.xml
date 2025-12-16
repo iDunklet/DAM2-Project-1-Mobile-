@@ -59,6 +59,9 @@
     <string name="td_start">Començar</string>
     <string name="td_terminal">Terminal</string>
     <string name="td_restart">Reiniciar</string>
+    <string name="btn_finish">Acabar</string>
+    <string name="btn_back_to_pending">Tornar a pendent</string>
+    <string name="tab_tasks_name">Tasques</string>
 
 
 </resources>

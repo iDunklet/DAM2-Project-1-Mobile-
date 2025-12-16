@@ -60,10 +60,9 @@
     <string name="td_terminal">Terminal</string>
     <string name="td_restart">Reiniciar</string>
 
-
-
-
-
+    <string name="btn_finish">Terminar</string>
+    <string name="btn_back_to_pending">Volver a Pendiente</string>
+    <string name="tab_tasks_name">Tareas</string>
 
 
 </resources>

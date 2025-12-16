@@ -127,7 +127,7 @@
         android:id="@+id/scrollTasks"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/tabBar"
+        android:layout_below="@id/indicator"
         android:layout_alignParentBottom="true"
         android:fillViewport="true">
 
@@ -192,4 +192,66 @@
         </LinearLayout>
     </ScrollView>
 
+    <ScrollView
+        android:id="@+id/scrollResumen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/indicator"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="20dp"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="20dp"
+                    android:text="@string/graphics_zone_tittle_tasksperhour"
+                    android:textColor="@color/oscuro"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/barChartHoras"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_marginBottom="20dp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/graphics_zone_tittle_taskstatus"
+                    android:textColor="@color/oscuro"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/pieChartEstado"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_marginBottom="20dp"
+                    tools:background="#EEEEEE" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </RelativeLayout>

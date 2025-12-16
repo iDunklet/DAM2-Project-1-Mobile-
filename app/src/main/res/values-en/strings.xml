@@ -59,9 +59,8 @@
     <string name="td_start">Start</string>
     <string name="td_terminal">Terminal</string>
     <string name="td_restart">Restart</string>
-
-
-
+    <string name="btn_finish">Finish</string>
+    <string name="btn_back_to_pending">Return to pending</string>
 
 
 </resources>
