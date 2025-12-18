@@ -13,6 +13,12 @@ open class BaseActivity : AppCompatActivity() {
 
     lateinit var personalizedFont: Typeface
 
+    override fun attachBaseContext(newBase: Context) {
+        val lang = LanguageHelper.loadLanguagePref(newBase)
+        val wrapped = LanguageHelper.wrapContext(newBase, lang)
+        super.attachBaseContext(wrapped)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         personalizedFont = ResourcesCompat.getFont(this, R.font.montserrat_regular)!!
