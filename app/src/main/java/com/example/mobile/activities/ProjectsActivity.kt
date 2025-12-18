@@ -35,6 +35,8 @@ class ProjectsActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_projects)
+        applyFont(findViewById(android.R.id.content))
+
         UIAnimations(this).startFloatingCircles()
         initData()
         initViews()

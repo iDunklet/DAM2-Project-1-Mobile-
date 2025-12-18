@@ -63,6 +63,8 @@ class ProjectDetailActivity : BaseActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_project_detail)
         UIAnimations(this).startFloatingCircles()
+        applyFont(findViewById(android.R.id.content))
+
 
         dataManager = DataManager(this)
 

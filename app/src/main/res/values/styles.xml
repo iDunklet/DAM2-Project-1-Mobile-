@@ -6,9 +6,4 @@
         <item name="android:fontFamily">@font/montserrat_regular</item>
     </style>
 
-    <!-- Estilo adicional para texto bold si lo necesitas -->
-    <style name="MontserratBoldStyle" parent="TextAppearance.AppCompat">
-        <item name="fontFamily">@font/montserrat_bold</item>
-        <item name="android:fontFamily">@font/montserrat_bold</item>
-    </style>
 </resources>

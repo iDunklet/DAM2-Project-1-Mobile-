@@ -33,6 +33,8 @@ class PersonalInfoActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_personal_info)
+        applyFont(findViewById(android.R.id.content))
+
 
         setupInsets()
         UIAnimations(this).startFloatingCircles()

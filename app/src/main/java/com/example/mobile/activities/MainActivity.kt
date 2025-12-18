@@ -26,10 +26,14 @@ class MainActivity : BaseActivity() {
     private lateinit var etPassword: EditText
     private lateinit var btnLogin: Button
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
+        applyFont(findViewById(android.R.id.content))
+
+
 
         initUI()
         initHelpers()

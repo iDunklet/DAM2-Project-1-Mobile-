@@ -53,6 +53,8 @@ class TasksDetailActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tasks_detail)
+        applyFont(findViewById(android.R.id.content))
+
 
         initializeActivity()
         setupBackButton()
